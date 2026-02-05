@@ -1,0 +1,60 @@
+---
+// Main Layout - Crystal Portfolio
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'Alberto Cisneros - Full-Stack Web Developer', 
+  description = 'Full-Stack Web Developer specialized in modern web applications. Committed to delivering high-quality software and excellent results.'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Alberto Cisneros Morando" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <title>{title}</title>
+    
+    <style>
+      html {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Crystal Effects -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
+      <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style="animation-delay: 2s;"></div>
+      <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+      <slot />
+    </main>
+
+    <style is:global>
+      @import '../styles/global.css';
+    </style>
+  </body>
+</html>

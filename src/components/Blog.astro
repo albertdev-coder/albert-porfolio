@@ -1,0 +1,156 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const blogPosts = [
+  {
+    title: 'Building Scalable Web Applications',
+    excerpt: 'Learn how to design and implement microservices architecture for modern web applications.',
+    date: '2025-01-28',
+    readTime: '8 min read',
+    tags: ['Architecture', 'Backend', 'DevOps'],
+    slug: 'scalable-web-applications'
+  },
+  {
+    title: 'Modern CSS: Container Queries',
+    excerpt: 'Dive into the latest CSS features that are revolutionizing responsive design.',
+    date: '2025-01-22',
+    readTime: '6 min read',
+    tags: ['CSS', 'Frontend', 'Design'],
+    slug: 'modern-css-container-queries'
+  },
+  {
+    title: 'TypeScript Best Practices',
+    excerpt: 'Essential patterns and techniques for leveraging TypeScript in enterprise projects.',
+    date: '2025-01-15',
+    readTime: '10 min read',
+    tags: ['TypeScript', 'Best Practices', 'Architecture'],
+    slug: 'typescript-best-practices'
+  }
+];
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+}
+---
+
+<section id="blog" class="relative py-32">
+  <div class="container-custom">
+    <div class="text-center mb-16" data-animate="fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="text-gradient">Latest Insights</span>
+      </h2>
+      <div class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-blue to-crystal-purple rounded-full mb-6"></div>
+      <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
+        Thoughts on web development, architecture, and modern technologies
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {blogPosts.map((post, index) => (
+        <article 
+          class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:crystal-glow-purple"
+          data-animate="slide-up"
+          data-delay={index * 150}
+        >
+          <div class="relative h-40 bg-gradient-to-br from-crystal-blue/20 to-crystal-purple/20 flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-crystal-cyan/30 rounded-full blur-2xl"></div>
+            </div>
+            <Icon name="lucide:file-text" class="w-16 h-16 text-text-tertiary opacity-50 relative z-10" />
+          </div>
+
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between text-sm text-text-tertiary">
+              <div class="flex items-center gap-2">
+                <Icon name="lucide:calendar" class="w-4 h-4" />
+                <time datetime={post.date}>{formatDate(post.date)}</time>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="lucide:clock" class="w-4 h-4" />
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-text-primary group-hover:text-gradient transition-all line-clamp-2">
+              <a href={`/blog/${post.slug}`} class="hover:underline">
+                {post.title}
+              </a>
+            </h3>
+
+            <p class="text-text-secondary text-sm leading-relaxed line-clamp-3">
+              {post.excerpt}
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              {post.tags.map((tag) => (
+                <span class="glass px-2 py-1 rounded-full text-xs text-text-tertiary">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+
+            <a 
+              href={`/blog/${post.slug}`}
+              class="inline-flex items-center gap-2 text-crystal-cyan hover:text-crystal-blue transition-colors font-semibold text-sm mt-4"
+            >
+              Read More
+              <Icon name="lucide:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="text-center mt-12" data-animate="fade-in" data-delay="600">
+      <a 
+        href="/blog" 
+        class="inline-flex items-center gap-2 glass glass-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 crystal-glow-cyan"
+      >
+        <Icon name="lucide:book-open" class="w-5 h-5" />
+        View All Posts
+        <Icon name="lucide:arrow-right" class="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.getAttribute('data-delay') || '0';
+        setTimeout(() => {
+          entry.target.classList.add('animate-in');
+        }, parseInt(delay));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('#blog [data-animate]').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  #blog [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  #blog [data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

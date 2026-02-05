@@ -1,0 +1,135 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const skillCategories = [
+  {
+    title: 'Frontend',
+    icon: 'lucide:palette',
+    color: 'crystal-blue',
+    skills: ['React / Next.js', 'Vue.js / Nuxt', 'TypeScript', 'Tailwind CSS', 'Astro', 'HTML5 / CSS3', 'Responsive Design', 'Web Animations']
+  },
+  {
+    title: 'Backend',
+    icon: 'lucide:server',
+    color: 'crystal-purple',
+    skills: ['Node.js / Express', 'Python / FastAPI', 'RESTful APIs', 'GraphQL', 'WebSockets', 'Authentication', 'Microservices', 'API Security']
+  },
+  {
+    title: 'Database',
+    icon: 'lucide:database',
+    color: 'crystal-cyan',
+    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma ORM', 'Database Design', 'Query Optimization', 'Data Migration', 'Cloud Storage']
+  },
+  {
+    title: 'DevOps & Tools',
+    icon: 'lucide:settings',
+    color: 'crystal-violet',
+    skills: ['Git / GitHub', 'Docker', 'CI/CD Pipelines', 'Linux / Bash', 'Cloud Platforms', 'Monitoring', 'Performance', 'Testing']
+  },
+  {
+    title: 'Architecture',
+    icon: 'lucide:layers',
+    color: 'crystal-pink',
+    skills: ['System Design', 'Scalable Architecture', 'Design Patterns', 'Clean Code', 'Code Review', 'Documentation', 'Agile / Scrum', 'Team Leadership']
+  },
+  {
+    title: 'UI/UX',
+    icon: 'lucide:sparkles',
+    color: 'crystal-blue',
+    skills: ['User Research', 'Wireframing', 'Prototyping', 'Figma', 'Accessibility', 'Mobile-First', 'Design Systems', 'User Testing']
+  }
+];
+---
+
+<section id="skills" class="relative py-32">
+  <div class="container-custom">
+    <div class="text-center mb-16" data-animate="fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="text-gradient">Skills & Expertise</span>
+      </h2>
+      <div class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-6"></div>
+      <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
+        A comprehensive toolkit for building modern, scalable, and user-centric applications
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skillCategories.map((category, index) => (
+        <div 
+          class="group glass rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
+          data-animate="slide-up"
+          data-delay={index * 100}
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+              <Icon name={category.icon} class="w-6 h-6 text-crystal-cyan" />
+            </div>
+            <h3 class="text-xl font-bold text-text-primary">
+              {category.title}
+            </h3>
+          </div>
+
+          <ul class="space-y-3">
+            {category.skills.map((skill) => (
+              <li class="flex items-center gap-2 text-text-secondary transition-all duration-300 hover:text-text-primary hover:translate-x-1">
+                <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan group-hover:animate-pulse"></div>
+                <span class="text-sm">{skill}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16" data-animate="fade-in" data-delay="800">
+      {[
+        { value: '50+', label: 'Projects Completed', icon: 'lucide:check-circle' },
+        { value: '10+', label: 'Technologies', icon: 'lucide:code-2' },
+        { value: '100%', label: 'Client Satisfaction', icon: 'lucide:heart' },
+        { value: '24/7', label: 'Commitment', icon: 'lucide:clock' },
+      ].map((stat) => (
+        <div class="glass rounded-xl p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
+          <Icon name={stat.icon} class="w-8 h-8 mx-auto mb-3 text-crystal-cyan" />
+          <div class="text-3xl font-bold text-gradient mb-2">{stat.value}</div>
+          <div class="text-sm text-text-tertiary">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.getAttribute('data-delay') || '0';
+        setTimeout(() => {
+          entry.target.classList.add('animate-in');
+        }, parseInt(delay));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('#skills [data-animate]').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  #skills [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  #skills [data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

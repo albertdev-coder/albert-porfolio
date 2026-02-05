@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* ============================
+   CRYSTAL DEV THEME TOKENS
+   ============================ */
+@theme {
+  /* Crystal Dev Color Palette */
+  --color-crystal-dark: #0a0e1a;
+  --color-crystal-darker: #050810;
+  --color-crystal-slate: #0f172a;
+  --color-crystal-blue: #3b82f6;
+  --color-crystal-cyan: #06b6d4;
+  --color-crystal-purple: #8b5cf6;
+  --color-crystal-violet: #7c3aed;
+  --color-crystal-pink: #ec4899;
+
+  /* Glassmorphism colors */
+  --color-glass-white: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass-hover: rgba(255, 255, 255, 0.08);
+
+  /* Text colors */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+
+  /* Border token (para border-border) */
+  --color-border: var(--color-glass-border);
+
+  /* Spacing scale */
+  --spacing-section: 8rem;
+  --spacing-container: 1.5rem;
+
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+
+  /* Blur values */
+  --blur-glass: 12px;
+  --blur-heavy: 24px;
+}
+
+/* ============================
+   BASE STYLES
+   ============================ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-crystal-darker text-text-primary antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* ============================
+   UTILITIES
+   ============================ */
+@layer utilities {
+  .glass {
+    background: var(--color-glass-white);
+    backdrop-filter: blur(var(--blur-glass));
+    border: 1px solid var(--color-glass-border);
+  }
+
+  .glass-hover:hover {
+    background: var(--color-glass-hover);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .crystal-glow {
+    box-shadow:
+      0 0 20px rgba(59, 130, 246, 0.3),
+      0 0 40px rgba(59, 130, 246, 0.15);
+  }
+
+  .crystal-glow-purple {
+    box-shadow:
+      0 0 20px rgba(139, 92, 246, 0.3),
+      0 0 40px rgba(139, 92, 246, 0.15);
+  }
+
+  .crystal-glow-cyan {
+    box-shadow:
+      0 0 20px rgba(6, 182, 212, 0.3),
+      0 0 40px rgba(6, 182, 212, 0.15);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;
+  }
+
+  .container-custom {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-container);
+    padding-right: var(--spacing-container);
+  }
+}
+
+/* ============================
+   KEYFRAMES
+   ============================ */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}

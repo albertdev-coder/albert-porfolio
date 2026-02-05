@@ -1,0 +1,171 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="container-custom py-4">
+    <div class="glass rounded-2xl px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-crystal-blue to-crystal-cyan flex items-center justify-center crystal-glow-cyan transition-transform group-hover:scale-110">
+          <span class="text-lg font-bold text-white">AC</span>
+        </div>
+        <span class="font-bold text-xl text-text-primary hidden sm:inline">
+          Alberto Cisneros
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden lg:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all duration-300 font-medium"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA Button -->
+      <a
+        href="#contact"
+        class="hidden md:flex items-center gap-2 glass glass-hover px-6 py-2 rounded-lg font-semibold transition-all duration-300 crystal-glow-purple hover:scale-105"
+      >
+        <Icon name="lucide:mail" class="w-4 h-4" />
+        Get in Touch
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="lg:hidden glass glass-hover p-2 rounded-lg transition-all duration-300"
+        aria-label="Toggle menu"
+      >
+        <Icon name="lucide:menu" class="w-6 h-6" id="menu-icon" />
+        <Icon name="lucide:x" class="w-6 h-6 hidden" id="close-icon" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 bg-crystal-darker/95 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center"
+  >
+    <ul class="text-center space-y-6">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="mobile-nav-link block text-2xl font-bold text-text-secondary hover:text-gradient transition-all duration-300 px-8 py-4"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-6">
+        <a
+          href="#contact"
+          class="mobile-nav-link inline-flex items-center gap-2 glass glass-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 crystal-glow-cyan"
+        >
+          <Icon name="lucide:mail" class="w-5 h-5" />
+          Get in Touch
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Scroll behavior for navbar
+  let lastScroll = 0;
+  const nav = document.getElementById('main-nav');
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    // Add backdrop blur when scrolled
+    if (currentScroll > 100) {
+      nav?.classList.add('backdrop-blur-xl');
+    } else {
+      nav?.classList.remove('backdrop-blur-xl');
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('opacity-0', 'pointer-events-none');
+      mobileMenu?.classList.add('opacity-100');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenu?.classList.remove('opacity-100');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mobileMenuButton?.addEventListener('click', toggleMenu);
+
+  // Close menu when clicking on a link
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) {
+        toggleMenu();
+      }
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) {
+      toggleMenu();
+    }
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href && href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+</script>

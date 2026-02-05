@@ -1,0 +1,109 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated background lines -->
+  <div class="absolute inset-0 overflow-hidden opacity-20">
+    <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.5" />
+          <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.5" />
+          <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.5" />
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="0" x2="100%" y2="100%" stroke="url(#line-gradient)" stroke-width="1" class="animate-pulse" />
+      <line x1="100%" y1="0" x2="0" y2="100%" stroke="url(#line-gradient)" stroke-width="1" class="animate-pulse" style="animation-delay: 0.5s;" />
+    </svg>
+  </div>
+
+  <div class="container-custom relative z-10 py-20">
+    <div class="max-w-5xl mx-auto text-center space-y-8">
+      <!-- Name with glow -->
+      <div class="space-y-4" data-animate="fade-in">
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tight">
+          <span class="text-gradient crystal-glow">
+            Alberto Cisneros
+          </span>
+        </h1>
+        <div class="h-1 w-32 mx-auto bg-gradient-to-r from-crystal-blue via-crystal-purple to-crystal-cyan rounded-full"></div>
+      </div>
+
+      <!-- Subtitle -->
+      <h2 class="text-2xl md:text-4xl font-semibold text-text-secondary" data-animate="slide-up" data-delay="200">
+        Full-Stack Web Developer
+      </h2>
+
+      <!-- Tagline -->
+      <p class="text-lg md:text-xl text-text-tertiary max-w-3xl mx-auto leading-relaxed" data-animate="slide-up" data-delay="400">
+        Crafting modern web applications with precision and passion. Committed to delivering 
+        <span class="text-crystal-cyan font-semibold">high-quality software</span> and 
+        <span class="text-crystal-purple font-semibold">excellent results</span> for every project.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8" data-animate="slide-up" data-delay="600">
+        <a 
+          href="#projects" 
+          class="group glass glass-hover px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 crystal-glow-cyan flex items-center gap-2 hover:scale-105"
+        >
+          <Icon name="lucide:rocket" class="w-5 h-5" />
+          View Projects
+          <Icon name="lucide:arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </a>
+        
+        <a 
+          href="/cv.pdf" 
+          download
+          class="group glass glass-hover px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 border-crystal-purple"
+        >
+          <Icon name="lucide:download" class="w-5 h-5" />
+          Download CV
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce" data-animate="fade-in" data-delay="1000">
+        <Icon name="lucide:chevron-down" class="w-8 h-8 text-text-tertiary" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.getAttribute('data-delay') || '0';
+        setTimeout(() => {
+          entry.target.classList.add('animate-in');
+        }, parseInt(delay));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('[data-animate]').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  [data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
