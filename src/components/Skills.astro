@@ -12,13 +12,13 @@ const skillCategories = [
     title: 'Backend',
     icon: 'lucide:server',
     color: 'crystal-purple',
-    skills: ['Node.js / Express', 'RESTful APIs', 'WebSockets', 'Authentication', 'Microservices', 'API Security']
+    skills: ['Node.js / Express', 'RESTful APIs', 'WebSockets', 'Authentication', 'API Security']
   },
   {
     title: 'Database',
     icon: 'lucide:database',
     color: 'crystal-cyan',
-    skills: ['PostgreSQL', 'Drizzlie ORM', 'Database Design', 'Query Optimization', 'Data Migration', 'Cloud Storage']
+    skills: ['PostgreSQL', 'Drizzle ORM', 'Database Design', 'Query Optimization', 'Data Migration', 'Cloud Storage']
   },
   {
     title: 'DevOps & Tools',
@@ -56,7 +56,7 @@ const skillCategories = [
         >
           <div class="flex items-center gap-3 mb-6">
             <div class="w-12 h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-              <Icon name={category.icon} class="w-6 h-6 text-crystal-cyan" />
+              <Icon name={category.icon} class={`w-6 h-6 text-${category.color}`} />
             </div>
             <h3 class="text-xl font-bold text-text-primary">
               {category.title}
@@ -77,10 +77,10 @@ const skillCategories = [
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16" data-animate="fade-in" data-delay="800">
       {[
-        { value: '100%', label: 'Projects Completed', icon: 'lucide:check-circle' },
+        { value: '2', label: 'Active Projects', icon: 'lucide:check-circle' },
         { value: '10+', label: 'Technologies', icon: 'lucide:code-2' },
-        { value: '100%', label: 'Client Satisfaction', icon: 'lucide:heart' },
-        { value: '24/7', label: 'Commitment', icon: 'lucide:clock' },
+        { value: 'Student', label: 'Trainee Developer', icon: 'lucide:book' },
+        { value: 'Always', label: 'Learning & Growing', icon: 'lucide:sparkles' },
       ].map((stat) => (
         <div class="glass rounded-xl p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
           <Icon name={stat.icon} class="w-8 h-8 mx-auto mb-3 text-crystal-cyan" />
