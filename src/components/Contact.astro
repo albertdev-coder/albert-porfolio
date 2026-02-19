@@ -3,28 +3,23 @@ import { Icon } from "astro-icon/components";
 
 const contactInfo = [
   {
-    icon: "lucide:mail",
-    label: "Email",
-    value: "alberto:albertocisneros03@gmail.com",
-    link: "alberto:albertocisneros03@gmail.com",
-  },
-  {
     icon: "lucide:map-pin",
     label: "Location",
-    value: "Available Worldwide",
+    value: "Based in Cuba — Open to Remote Work Worldwide",
     link: null,
   },
   {
     icon: "lucide:linkedin",
     label: "LinkedIn",
-    value: "/in/albertocisneros",
-    link: "https://linkedin.com/in/albertocisneros",
+    value: "/in/alberto-cisneros",
+    link: "https://www.linkedin.com/in/alberto-cisneros-7430b23a2/",
   },
 ];
 ---
 
 <section id="contact" class="relative py-32">
   <div class="container-custom">
+    <!-- Header -->
     <div class="text-center mb-16" data-animate="fade-in">
       <h2 class="text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Get In Touch</span>
@@ -34,11 +29,13 @@ const contactInfo = [
       >
       </div>
       <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
-        Have a project in mind or want to collaborate? I'd love to hear from you
+        Interested in working together or discussing a remote opportunity? Feel
+        free to reach out — I’m always open to meaningful collaborations.
       </p>
     </div>
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Contact Form -->
       <div
         class="glass rounded-2xl p-8 crystal-glow"
         data-animate="slide-up"
@@ -62,7 +59,7 @@ const contactInfo = [
               id="name"
               name="name"
               required
-              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary placeholder-text-tertiary"
+              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary"
               placeholder="John Doe"
             />
           </div>
@@ -79,7 +76,7 @@ const contactInfo = [
               id="email"
               name="email"
               required
-              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary placeholder-text-tertiary"
+              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary"
               placeholder="john@example.com"
             />
           </div>
@@ -96,8 +93,9 @@ const contactInfo = [
               name="message"
               required
               rows="5"
-              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary placeholder-text-tertiary resize-none"
-              placeholder="Tell me about your project..."></textarea>
+              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary resize-none"
+              placeholder="Tell me about your project or opportunity..."
+            ></textarea>
           </div>
 
           <button
@@ -110,7 +108,9 @@ const contactInfo = [
         </form>
       </div>
 
+      <!-- Contact Info & Socials -->
       <div class="space-y-6" data-animate="slide-up" data-delay="400">
+        <!-- Contact Info Cards -->
         <div class="space-y-4">
           {
             contactInfo.map((info) => (
@@ -144,10 +144,11 @@ const contactInfo = [
           }
         </div>
 
+        <!-- Social Links -->
         <div class="glass rounded-xl p-6">
           <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
             <Icon name="lucide:share-2" class="w-5 h-5 text-crystal-purple" />
-            Connect on Social Media
+            Connect Online
           </h4>
           <div class="grid grid-cols-3 gap-3">
             {
@@ -161,11 +162,6 @@ const contactInfo = [
                   name: "LinkedIn",
                   icon: "lucide:linkedin",
                   link: "https://www.linkedin.com/in/alberto-cisneros-7430b23a2/",
-                },
-                {
-                  name: "Email",
-                  icon: "lucide:mail",
-                  link: "albertocismo03@gmail.com",
                 },
               ].map((social) => (
                 <a
@@ -183,6 +179,7 @@ const contactInfo = [
           </div>
         </div>
 
+        <!-- Availability -->
         <div class="glass rounded-xl p-6">
           <div class="flex items-center gap-3">
             <div class="relative">
@@ -195,10 +192,11 @@ const contactInfo = [
             </div>
             <div>
               <div class="text-text-primary font-semibold">
-                Available for Work
+                Open to Remote Opportunities
               </div>
               <div class="text-sm text-text-tertiary">
-                Open to new opportunities and collaborations
+                Available for internships, junior roles, and collaborative
+                projects
               </div>
             </div>
           </div>
@@ -208,8 +206,8 @@ const contactInfo = [
   </div>
 </section>
 
-<script>
-  const form = document.getElementById("contact-form") as HTMLFormElement;
+<script type="module">
+  const form = document.getElementById("contact-form");
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -217,31 +215,44 @@ const contactInfo = [
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
-    console.log("Form submitted:", data);
-    alert("Thank you for your message! I'll get back to you soon.");
-    form.reset();
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert("Thank you! Your message has been sent.");
+        form.reset();
+      } else {
+        alert("Oops! " + result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again later.");
+    }
   });
 
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-  };
-
+  // Intersection Observer for animations
+  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const delay = entry.target.getAttribute("data-delay") || "0";
-        setTimeout(() => {
-          entry.target.classList.add("animate-in");
-        }, parseInt(delay));
+        setTimeout(
+          () => entry.target.classList.add("animate-in"),
+          parseInt(delay),
+        );
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll("#contact [data-animate]").forEach((el) => {
-    observer.observe(el);
-  });
+  document
+    .querySelectorAll("#contact [data-animate]")
+    .forEach((el) => observer.observe(el));
 </script>
 
 <style>
@@ -252,7 +263,6 @@ const contactInfo = [
       opacity 0.8s ease-out,
       transform 0.8s ease-out;
   }
-
   #contact [data-animate].animate-in {
     opacity: 1;
     transform: translateY(0);
@@ -261,17 +271,14 @@ const contactInfo = [
   textarea::-webkit-scrollbar {
     width: 8px;
   }
-
   textarea::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
   }
-
   textarea::-webkit-scrollbar-thumb {
     background: rgba(59, 130, 246, 0.5);
     border-radius: 4px;
   }
-
   textarea::-webkit-scrollbar-thumb:hover {
     background: rgba(59, 130, 246, 0.7);
   }
