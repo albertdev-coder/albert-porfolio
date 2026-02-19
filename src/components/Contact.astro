@@ -1,25 +1,25 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
 const contactInfo = [
   {
-    icon: 'lucide:mail',
-    label: 'Email',
-    value: 'alberto:albertocisneros03@gmail.com',
-    link: 'alberto:albertocisneros03@gmail.com'
+    icon: "lucide:mail",
+    label: "Email",
+    value: "alberto:albertocisneros03@gmail.com",
+    link: "alberto:albertocisneros03@gmail.com",
   },
   {
-    icon: 'lucide:map-pin',
-    label: 'Location',
-    value: 'Available Worldwide',
-    link: null
+    icon: "lucide:map-pin",
+    label: "Location",
+    value: "Available Worldwide",
+    link: null,
   },
   {
-    icon: 'lucide:linkedin',
-    label: 'LinkedIn',
-    value: '/in/albertocisneros',
-    link: 'https://linkedin.com/in/albertocisneros'
-  }
+    icon: "lucide:linkedin",
+    label: "LinkedIn",
+    value: "/in/albertocisneros",
+    link: "https://linkedin.com/in/albertocisneros",
+  },
 ];
 ---
 
@@ -29,14 +29,21 @@ const contactInfo = [
       <h2 class="text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Get In Touch</span>
       </h2>
-      <div class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-blue rounded-full mb-6"></div>
+      <div
+        class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-blue rounded-full mb-6"
+      >
+      </div>
       <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
         Have a project in mind or want to collaborate? I'd love to hear from you
       </p>
     </div>
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div class="glass rounded-2xl p-8 crystal-glow" data-animate="slide-up" data-delay="200">
+      <div
+        class="glass rounded-2xl p-8 crystal-glow"
+        data-animate="slide-up"
+        data-delay="200"
+      >
         <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
           <Icon name="lucide:send" class="w-6 h-6 text-crystal-cyan" />
           Send a Message
@@ -44,7 +51,10 @@ const contactInfo = [
 
         <form class="space-y-6" id="contact-form">
           <div>
-            <label for="name" class="block text-sm font-medium text-text-secondary mb-2">
+            <label
+              for="name"
+              class="block text-sm font-medium text-text-secondary mb-2"
+            >
               Your Name
             </label>
             <input
@@ -58,7 +68,10 @@ const contactInfo = [
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-text-secondary mb-2">
+            <label
+              for="email"
+              class="block text-sm font-medium text-text-secondary mb-2"
+            >
               Email Address
             </label>
             <input
@@ -72,7 +85,10 @@ const contactInfo = [
           </div>
 
           <div>
-            <label for="message" class="block text-sm font-medium text-text-secondary mb-2">
+            <label
+              for="message"
+              class="block text-sm font-medium text-text-secondary mb-2"
+            >
               Message
             </label>
             <textarea
@@ -81,8 +97,7 @@ const contactInfo = [
               required
               rows="5"
               class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary placeholder-text-tertiary resize-none"
-              placeholder="Tell me about your project..."
-            ></textarea>
+              placeholder="Tell me about your project..."></textarea>
           </div>
 
           <button
@@ -97,30 +112,36 @@ const contactInfo = [
 
       <div class="space-y-6" data-animate="slide-up" data-delay="400">
         <div class="space-y-4">
-          {contactInfo.map((info) => (
-            <div class="glass rounded-xl p-6 transition-all duration-300 hover:crystal-glow-purple hover:scale-105">
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-lg glass flex items-center justify-center shrink-0">
-                  <Icon name={info.icon} class="w-6 h-6 text-crystal-cyan" />
-                </div>
-                <div>
-                  <div class="text-sm text-text-tertiary mb-1">{info.label}</div>
-                  {info.link ? (
-                    <a 
-                      href={info.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-text-primary font-semibold hover:text-crystal-cyan transition-colors"
-                    >
-                      {info.value}
-                    </a>
-                  ) : (
-                    <div class="text-text-primary font-semibold">{info.value}</div>
-                  )}
+          {
+            contactInfo.map((info) => (
+              <div class="glass rounded-xl p-6 transition-all duration-300 hover:crystal-glow-purple hover:scale-105">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-lg glass flex items-center justify-center shrink-0">
+                    <Icon name={info.icon} class="w-6 h-6 text-crystal-cyan" />
+                  </div>
+                  <div>
+                    <div class="text-sm text-text-tertiary mb-1">
+                      {info.label}
+                    </div>
+                    {info.link ? (
+                      <a
+                        href={info.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-text-primary font-semibold hover:text-crystal-cyan transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <div class="text-text-primary font-semibold">
+                        {info.value}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
 
         <div class="glass rounded-xl p-6">
@@ -129,34 +150,56 @@ const contactInfo = [
             Connect on Social Media
           </h4>
           <div class="grid grid-cols-3 gap-3">
-            {[
-              { name: 'GitHub', icon: 'lucide:github', link: 'https://github.com' },
-              { name: 'LinkedIn', icon: 'lucide:linkedin', link: 'https://linkedin.com' },
-              { name: 'Twitter', icon: 'lucide:twitter', link: 'https://twitter.com' },
-            ].map((social) => (
-              <a
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="glass glass-hover p-4 rounded-lg flex flex-col items-center gap-2 transition-all duration-300 hover:crystal-glow hover:scale-110"
-                aria-label={social.name}
-              >
-                <Icon name={social.icon} class="w-6 h-6 text-crystal-cyan" />
-                <span class="text-xs text-text-tertiary">{social.name}</span>
-              </a>
-            ))}
+            {
+              [
+                {
+                  name: "GitHub",
+                  icon: "lucide:github",
+                  link: "https://github.com/albertdev-coder",
+                },
+                {
+                  name: "LinkedIn",
+                  icon: "lucide:linkedin",
+                  link: "https://www.linkedin.com/in/alberto-cisneros-7430b23a2/",
+                },
+                {
+                  name: "Email",
+                  icon: "lucide:mail",
+                  link: "albertocismo03@gmail.com",
+                },
+              ].map((social) => (
+                <a
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="glass glass-hover p-4 rounded-lg flex flex-col items-center gap-2 transition-all duration-300 hover:crystal-glow hover:scale-110"
+                  aria-label={social.name}
+                >
+                  <Icon name={social.icon} class="w-6 h-6 text-crystal-cyan" />
+                  <span class="text-xs text-text-tertiary">{social.name}</span>
+                </a>
+              ))
+            }
           </div>
         </div>
 
         <div class="glass rounded-xl p-6">
           <div class="flex items-center gap-3">
             <div class="relative">
-              <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <div class="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
+              <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse">
+              </div>
+              <div
+                class="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping"
+              >
+              </div>
             </div>
             <div>
-              <div class="text-text-primary font-semibold">Available for Work</div>
-              <div class="text-sm text-text-tertiary">Open to new opportunities and collaborations</div>
+              <div class="text-text-primary font-semibold">
+                Available for Work
+              </div>
+              <div class="text-sm text-text-tertiary">
+                Open to new opportunities and collaborations
+              </div>
             </div>
           </div>
         </div>
@@ -166,37 +209,37 @@ const contactInfo = [
 </section>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  
-  form?.addEventListener('submit', async (e) => {
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    
-    console.log('Form submitted:', data);
-    alert('Thank you for your message! I\'ll get back to you soon.');
+
+    console.log("Form submitted:", data);
+    alert("Thank you for your message! I'll get back to you soon.");
     form.reset();
   });
 
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: "0px 0px -100px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute('data-delay') || '0';
+        const delay = entry.target.getAttribute("data-delay") || "0";
         setTimeout(() => {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add("animate-in");
         }, parseInt(delay));
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('#contact [data-animate]').forEach((el) => {
+  document.querySelectorAll("#contact [data-animate]").forEach((el) => {
     observer.observe(el);
   });
 </script>
@@ -205,7 +248,9 @@ const contactInfo = [
   #contact [data-animate] {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
   }
 
   #contact [data-animate].animate-in {

@@ -1,36 +1,55 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
 const skillCategories = [
   {
-    title: 'Frontend',
-    icon: 'lucide:palette',
-    color: 'crystal-blue',
-    skills: ['React / Next.js', 'TypeScript', 'Tailwind CSS', 'Astro', 'HTML5 / CSS3', 'Responsive Design', 'Web Animations']
+    title: "Frontend Development",
+    icon: "lucide:palette",
+    color: "crystal-blue",
+    skills: [
+      "React & Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Astro",
+      "HTML5 & CSS3",
+      "Responsive Design",
+      "Basic Web Animations",
+    ],
   },
   {
-    title: 'Backend',
-    icon: 'lucide:server',
-    color: 'crystal-purple',
-    skills: ['Node.js / Express', 'RESTful APIs', 'WebSockets', 'Authentication', 'API Security']
+    title: "Backend Development",
+    icon: "lucide:server",
+    color: "crystal-purple",
+    skills: [
+      "Node.js & Express",
+      "REST API Development",
+      "Authentication (JWT)",
+      "Basic WebSockets",
+      "API Validation",
+    ],
   },
   {
-    title: 'Database',
-    icon: 'lucide:database',
-    color: 'crystal-cyan',
-    skills: ['PostgreSQL', 'Drizzle ORM', 'Database Design', 'Query Optimization', 'Data Migration', 'Cloud Storage']
+    title: "Databases",
+    icon: "lucide:database",
+    color: "crystal-cyan",
+    skills: [
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Relational Database Design",
+      "Basic Query Optimization",
+    ],
   },
   {
-    title: 'DevOps & Tools',
-    icon: 'lucide:settings',
-    color: 'crystal-violet',
-    skills: ['Git / GitHub', 'CI/CD Pipelines', 'Linux / Bash', 'Cloud Platforms', 'Monitoring', 'Performance', 'Testing']
-  },
-  {
-    title: 'Architecture',
-    icon: 'lucide:layers',
-    color: 'crystal-pink',
-    skills: ['System Design', 'Scalable Architecture', 'Design Patterns', 'Clean Code', 'Code Review', 'Documentation']
+    title: "Tools & Workflow",
+    icon: "lucide:settings",
+    color: "crystal-violet",
+    skills: [
+      "Git & GitHub",
+      "Deployment (Vercel / Railway)",
+      "Linux Basics",
+      "Environment Configuration",
+      "Performance Optimization",
+    ],
   },
 ];
 ---
@@ -41,53 +60,77 @@ const skillCategories = [
       <h2 class="text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Skills & Expertise</span>
       </h2>
-      <div class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-6"></div>
+      <div
+        class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-6"
+      >
+      </div>
       <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
-        A comprehensive toolkit for building modern, scalable, and user-centric applications
+        Technologies and tools I use to design, build, and deploy modern web
+        applications.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {skillCategories.map((category, index) => (
-        <div 
-          class="group glass rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
-          data-animate="slide-up"
-          data-delay={index * 100}
-        >
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-              <Icon name={category.icon} class={`w-6 h-6 text-${category.color}`} />
+      {
+        skillCategories.map((category, index) => (
+          <div
+            class="group glass rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
+            data-animate="slide-up"
+            data-delay={index * 100}
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                <Icon
+                  name={category.icon}
+                  class={`w-6 h-6 text-${category.color}`}
+                />
+              </div>
+              <h3 class="text-xl font-bold text-text-primary">
+                {category.title}
+              </h3>
             </div>
-            <h3 class="text-xl font-bold text-text-primary">
-              {category.title}
-            </h3>
-          </div>
 
-          <ul class="space-y-3">
-            {category.skills.map((skill) => (
-              <li class="flex items-center gap-2 text-text-secondary transition-all duration-300 hover:text-text-primary hover:translate-x-1">
-                <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan group-hover:animate-pulse"></div>
-                <span class="text-sm">{skill}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+            <ul class="space-y-3">
+              {category.skills.map((skill) => (
+                <li class="flex items-center gap-2 text-text-secondary transition-all duration-300 hover:text-text-primary hover:translate-x-1">
+                  <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan group-hover:animate-pulse" />
+                  <span class="text-sm">{skill}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16" data-animate="fade-in" data-delay="800">
-      {[
-        { value: '2', label: 'Active Projects', icon: 'lucide:check-circle' },
-        { value: '10+', label: 'Technologies', icon: 'lucide:code-2' },
-        { value: 'Student', label: 'Trainee Developer', icon: 'lucide:book' },
-        { value: 'Always', label: 'Learning & Growing', icon: 'lucide:sparkles' },
-      ].map((stat) => (
-        <div class="glass rounded-xl p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
-          <Icon name={stat.icon} class="w-8 h-8 mx-auto mb-3 text-crystal-cyan" />
-          <div class="text-3xl font-bold text-gradient mb-2">{stat.value}</div>
-          <div class="text-sm text-text-tertiary">{stat.label}</div>
-        </div>
-      ))}
+    <div
+      class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+      data-animate="fade-in"
+      data-delay="800"
+    >
+      {
+        [
+          { value: "2", label: "Active Projects", icon: "lucide:check-circle" },
+          { value: "10+", label: "Technologies", icon: "lucide:code-2" },
+          { value: "Student", label: "Trainee Developer", icon: "lucide:book" },
+          {
+            value: "Always",
+            label: "Learning & Growing",
+            icon: "lucide:sparkles",
+          },
+        ].map((stat) => (
+          <div class="glass rounded-xl p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
+            <Icon
+              name={stat.icon}
+              class="w-8 h-8 mx-auto mb-3 text-crystal-cyan"
+            />
+            <div class="text-3xl font-bold text-gradient mb-2">
+              {stat.value}
+            </div>
+            <div class="text-sm text-text-tertiary">{stat.label}</div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -95,22 +138,22 @@ const skillCategories = [
 <script>
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: "0px 0px -100px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute('data-delay') || '0';
+        const delay = entry.target.getAttribute("data-delay") || "0";
         setTimeout(() => {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add("animate-in");
         }, parseInt(delay));
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('#skills [data-animate]').forEach((el) => {
+  document.querySelectorAll("#skills [data-animate]").forEach((el) => {
     observer.observe(el);
   });
 </script>
@@ -119,7 +162,9 @@ const skillCategories = [
   #skills [data-animate] {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
   }
 
   #skills [data-animate].animate-in {
