@@ -1,24 +1,16 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
-const mainSkills = [
-  'Full-Stack Development',
-  'Modern Web Architecture',
-  'UI/UX Design',
-  'Database Design',
-  'API Development',
-  'Performance Optimization'
-];
+const mainSkills = ["Full-Stack Development", "Modern Web Architecture"];
 
 const technologies = [
-  { name: 'React', icon: 'lucide:atom' },
-  { name: 'Next.js', icon: 'lucide:arrow-right' },
-  { name: 'Node.js', icon: 'lucide:server' },
-  { name: 'TypeScript', icon: 'lucide:code-2' },
-  { name: 'Tailwind CSS', icon: 'lucide:palette' },
-  { name: 'PostgreSQL', icon: 'lucide:database' },
-  { name: 'Git', icon: 'lucide:git-branch' },
-  { name: 'Astro', icon: 'lucide:sparkles' },
+  { name: "React", icon: "lucide:atom" },
+  { name: "Next.js", icon: "lucide:arrow-right" },
+  { name: "Node.js", icon: "lucide:server" },
+  { name: "TypeScript", icon: "lucide:code-2" },
+  { name: "Tailwind CSS", icon: "lucide:palette" },
+  { name: "PostgreSQL", icon: "lucide:database" },
+  { name: "Git", icon: "lucide:git-branch" },
 ];
 ---
 
@@ -29,31 +21,45 @@ const technologies = [
       <h2 class="text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">About Me</span>
       </h2>
-      <div class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-blue to-crystal-cyan rounded-full"></div>
+      <div
+        class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-blue to-crystal-cyan rounded-full"
+      >
+      </div>
     </div>
 
     <!-- Crystal Profile Card -->
     <div class="max-w-4xl mx-auto">
-      <div class="glass rounded-2xl p-8 md:p-12 crystal-glow" data-animate="slide-up" data-delay="200">
+      <div
+        class="glass rounded-2xl p-8 md:p-12 crystal-glow"
+        data-animate="slide-up"
+        data-delay="200"
+      >
         <!-- Bio -->
         <div class="space-y-6 mb-12">
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-full glass flex items-center justify-center crystal-glow-cyan">
+            <div
+              class="w-12 h-12 rounded-full glass flex items-center justify-center crystal-glow-cyan"
+            >
               <Icon name="lucide:user" class="w-6 h-6 text-crystal-cyan" />
             </div>
-            <h3 class="text-2xl font-bold text-text-primary">Alberto Cisneros Morando</h3>
+            <h3 class="text-2xl font-bold text-text-primary">
+              Alberto Cisneros Morando
+            </h3>
           </div>
-          
+
           <p class="text-lg text-text-secondary leading-relaxed">
-            I'm a passionate full-stack developer and university student with a deep commitment to creating 
-            exceptional web experiences. My approach combines technical expertise with creative problem-solving 
-            to build applications that are not only functional but also elegant and user-friendly.
+            I'm a passionate full-stack developer and university student with a
+            deep commitment to creating exceptional web experiences. My approach
+            combines technical expertise with creative problem-solving to build
+            applications that are not only functional but also elegant and
+            user-friendly.
           </p>
-          
+
           <p class="text-lg text-text-secondary leading-relaxed">
-            As a developer, I believe in writing clean, maintainable code and staying current with the latest 
-            technologies and best practices. I'm fully dedicated to delivering high-quality solutions that 
-            exceed expectations and drive real value for clients and users alike.
+            As a developer, I believe in writing clean, maintainable code and
+            staying current with the latest technologies and best practices. I'm
+            fully dedicated to delivering high-quality solutions that exceed
+            expectations and drive real value for clients and users alike.
           </p>
         </div>
 
@@ -64,12 +70,14 @@ const technologies = [
             Core Competencies
           </h4>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {mainSkills.map((skill) => (
-              <div class="glass glass-hover rounded-lg px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:scale-105">
-                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-crystal-blue to-crystal-cyan"></div>
-                <span class="text-text-secondary">{skill}</span>
-              </div>
-            ))}
+            {
+              mainSkills.map((skill) => (
+                <div class="glass glass-hover rounded-lg px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:scale-105">
+                  <div class="w-2 h-2 rounded-full bg-gradient-to-r from-crystal-blue to-crystal-cyan" />
+                  <span class="text-text-secondary">{skill}</span>
+                </div>
+              ))
+            }
           </div>
         </div>
 
@@ -80,12 +88,19 @@ const technologies = [
             Technologies I Work With
           </h4>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {technologies.map((tech) => (
-              <div class="glass glass-hover rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110 group">
-                <Icon name={tech.icon} class="w-8 h-8 text-crystal-blue group-hover:text-crystal-cyan transition-colors" />
-                <span class="text-sm text-text-tertiary group-hover:text-text-secondary transition-colors">{tech.name}</span>
-              </div>
-            ))}
+            {
+              technologies.map((tech) => (
+                <div class="glass glass-hover rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110 group">
+                  <Icon
+                    name={tech.icon}
+                    class="w-8 h-8 text-crystal-blue group-hover:text-crystal-cyan transition-colors"
+                  />
+                  <span class="text-sm text-text-tertiary group-hover:text-text-secondary transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -96,22 +111,22 @@ const technologies = [
 <script>
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: "0px 0px -100px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute('data-delay') || '0';
+        const delay = entry.target.getAttribute("data-delay") || "0";
         setTimeout(() => {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add("animate-in");
         }, parseInt(delay));
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('#about [data-animate]').forEach((el) => {
+  document.querySelectorAll("#about [data-animate]").forEach((el) => {
     observer.observe(el);
   });
 </script>
@@ -120,7 +135,9 @@ const technologies = [
   #about [data-animate] {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
   }
 
   #about [data-animate].animate-in {
