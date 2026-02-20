@@ -7,16 +7,6 @@ const mainSkills = [
   "REST API Integration",
   "Clean & Maintainable Code Practices",
 ];
-
-const technologies = [
-  { name: "React", icon: "lucide:atom" },
-  { name: "Next.js", icon: "lucide:arrow-right" },
-  { name: "Node.js", icon: "lucide:server" },
-  { name: "TypeScript", icon: "lucide:code-2" },
-  { name: "Tailwind CSS", icon: "lucide:palette" },
-  { name: "PostgreSQL", icon: "lucide:database" },
-  { name: "Git", icon: "lucide:git-branch" },
-];
 ---
 
 <section id="about" class="relative py-32">
@@ -81,29 +71,6 @@ const technologies = [
                 <div class="glass glass-hover rounded-lg px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:scale-105">
                   <div class="w-2 h-2 rounded-full bg-gradient-to-r from-crystal-blue to-crystal-cyan" />
                   <span class="text-text-secondary">{skill}</span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Technologies -->
-        <div data-animate="slide-up" data-delay="600">
-          <h4 class="text-xl font-semibold mb-6 flex items-center gap-2">
-            <Icon name="lucide:layers" class="w-5 h-5 text-crystal-cyan" />
-            Technologies I Work With
-          </h4>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {
-              technologies.map((tech) => (
-                <div class="glass glass-hover rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:scale-110 group">
-                  <Icon
-                    name={tech.icon}
-                    class="w-8 h-8 text-crystal-blue group-hover:text-crystal-cyan transition-colors"
-                  />
-                  <span class="text-sm text-text-tertiary group-hover:text-text-secondary transition-colors">
-                    {tech.name}
-                  </span>
                 </div>
               ))
             }
