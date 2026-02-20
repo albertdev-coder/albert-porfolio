@@ -9,15 +9,15 @@ const mainSkills = [
 ];
 ---
 
-<section id="about" class="relative py-32">
+<section id="about" class="relative py-20 md:py-32">
   <div class="container-custom">
     <!-- Section Header -->
-    <div class="text-center mb-16" data-animate="fade-in">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+    <div class="text-center mb-12 md:mb-16" data-animate="fade-in">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">About Me</span>
       </h2>
       <div
-        class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-blue to-crystal-cyan rounded-full"
+        class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-blue to-crystal-cyan rounded-full"
       >
       </div>
     </div>
@@ -25,24 +25,24 @@ const mainSkills = [
     <!-- Crystal Profile Card -->
     <div class="max-w-4xl mx-auto">
       <div
-        class="glass rounded-2xl p-8 md:p-12 crystal-glow"
+        class="glass rounded-2xl p-6 sm:p-8 md:p-12 crystal-glow"
         data-animate="slide-up"
         data-delay="200"
       >
         <!-- Bio -->
-        <div class="space-y-6 mb-12">
-          <div class="flex items-center gap-3 mb-6">
+        <div class="space-y-5 sm:space-y-6 mb-10 md:mb-12">
+          <div class="flex items-center gap-3 mb-4 sm:mb-6">
             <div
-              class="w-12 h-12 rounded-full glass flex items-center justify-center crystal-glow-cyan"
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center crystal-glow-cyan shrink-0"
             >
-              <Icon name="lucide:user" class="w-6 h-6 text-crystal-cyan" />
+              <Icon name="lucide:user" class="w-5 h-5 sm:w-6 sm:h-6 text-crystal-cyan" />
             </div>
-            <h3 class="text-2xl font-bold text-text-primary">
+            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-text-primary leading-tight">
               Alberto Cisneros Morando
             </h3>
           </div>
 
-          <p class="text-lg text-text-secondary leading-relaxed">
+          <p class="text-base sm:text-lg text-text-secondary leading-relaxed">
             I'm an Informatics Engineering student and aspiring full-stack
             developer focused on building real-world web applications. I
             specialize in creating modern, responsive platforms using
@@ -51,7 +51,7 @@ const mainSkills = [
             functionality.
           </p>
 
-          <p class="text-lg text-text-secondary leading-relaxed">
+          <p class="text-base sm:text-lg text-text-secondary leading-relaxed">
             I enjoy solving problems through code, designing intuitive user
             experiences, and continuously improving my technical skills. My goal
             is to contribute to impactful remote teams where I can grow as a
@@ -60,17 +60,17 @@ const mainSkills = [
         </div>
 
         <!-- Main Skills -->
-        <div class="mb-12" data-animate="slide-up" data-delay="400">
-          <h4 class="text-xl font-semibold mb-6 flex items-center gap-2">
-            <Icon name="lucide:zap" class="w-5 h-5 text-crystal-purple" />
+        <div class="mb-10 md:mb-12" data-animate="slide-up" data-delay="400">
+          <h4 class="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+            <Icon name="lucide:zap" class="w-4 h-4 sm:w-5 sm:h-5 text-crystal-purple" />
             Core Competencies
           </h4>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {
               mainSkills.map((skill) => (
                 <div class="glass glass-hover rounded-lg px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:scale-105">
-                  <div class="w-2 h-2 rounded-full bg-gradient-to-r from-crystal-blue to-crystal-cyan" />
-                  <span class="text-text-secondary">{skill}</span>
+                  <div class="w-2 h-2 rounded-full bg-gradient-to-r from-crystal-blue to-crystal-cyan shrink-0" />
+                  <span class="text-sm sm:text-base text-text-secondary">{skill}</span>
                 </div>
               ))
             }

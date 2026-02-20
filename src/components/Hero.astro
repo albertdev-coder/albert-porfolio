@@ -37,22 +37,22 @@ import { Icon } from "astro-icon/components";
     </svg>
   </div>
 
-  <div class="container-custom relative z-10 py-20">
-    <div class="max-w-5xl mx-auto text-center space-y-8">
+  <div class="container-custom relative z-10 py-24 md:py-20">
+    <div class="max-w-5xl mx-auto text-center space-y-6 md:space-y-8">
       <!-- Name with glow -->
       <div class="space-y-4" data-animate="fade-in">
-        <h1 class="text-6xl md:text-8xl font-bold tracking-tight">
+        <h1 class="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight">
           <span class="text-gradient crystal-glow"> Alberto Cisneros </span>
         </h1>
         <div
-          class="h-1 w-32 mx-auto bg-gradient-to-r from-crystal-blue via-crystal-purple to-crystal-cyan rounded-full"
+          class="h-1 w-24 sm:w-32 mx-auto bg-gradient-to-r from-crystal-blue via-crystal-purple to-crystal-cyan rounded-full"
         >
         </div>
       </div>
 
       <!-- Subtitle -->
       <h2
-        class="text-2xl md:text-4xl font-semibold text-text-secondary"
+        class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-text-secondary px-2"
         data-animate="slide-up"
         data-delay="200"
       >
@@ -61,7 +61,7 @@ import { Icon } from "astro-icon/components";
 
       <!-- Tagline -->
       <p
-        class="text-lg md:text-xl text-text-tertiary max-w-3xl mx-auto leading-relaxed"
+        class="text-sm sm:text-base md:text-lg lg:text-xl text-text-tertiary max-w-3xl mx-auto leading-relaxed px-2"
         data-animate="slide-up"
         data-delay="400"
       >
@@ -69,44 +69,44 @@ import { Icon } from "astro-icon/components";
         web applications with Next.js, React, TypeScript, Node.js, and
         PostgreSQL. I develop in a Linux environment on ChromeOS and deliver
         projects that real users enjoy. Currently seeking remote opportunities
-        where I can contribute to product teams and grow as a software engineer
+        where I can contribute to product teams and grow as a software engineer.
       </p>
 
       <!-- CTA Buttons -->
       <div
-        class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+        class="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-8 px-4"
         data-animate="slide-up"
         data-delay="600"
       >
         <a
           href="#projects"
-          class="group glass glass-hover px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 crystal-glow-cyan flex items-center gap-2 hover:scale-105"
+          class="group glass glass-hover w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 crystal-glow-cyan flex items-center justify-center gap-2 hover:scale-105"
         >
-          <Icon name="lucide:rocket" class="w-5 h-5" />
+          <Icon name="lucide:rocket" class="w-4 h-4 sm:w-5 sm:h-5" />
           View Projects
           <Icon
             name="lucide:arrow-right"
-            class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+            class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
           />
         </a>
 
         <a
           href="/cv.pdf"
           download
-          class="group glass glass-hover px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 hover:scale-105 border-crystal-purple"
+          class="group glass glass-hover w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 border-crystal-purple"
         >
-          <Icon name="lucide:download" class="w-5 h-5" />
+          <Icon name="lucide:download" class="w-4 h-4 sm:w-5 sm:h-5" />
           Download CV
         </a>
       </div>
 
       <!-- Scroll indicator -->
       <div
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+        class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
         data-animate="fade-in"
         data-delay="1000"
       >
-        <Icon name="lucide:chevron-down" class="w-8 h-8 text-text-tertiary" />
+        <Icon name="lucide:chevron-down" class="w-6 h-6 sm:w-8 sm:h-8 text-text-tertiary" />
       </div>
     </div>
   </div>
@@ -148,5 +148,12 @@ import { Icon } from "astro-icon/components";
   [data-animate].animate-in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* xs breakpoint helper (below sm=640px) */
+  @media (min-width: 480px) {
+    .xs\:flex-row { flex-direction: row; }
+    .xs\:w-auto { width: auto; }
+    .xs\:text-5xl { font-size: 3rem; line-height: 1; }
   }
 </style>

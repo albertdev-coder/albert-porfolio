@@ -29,7 +29,6 @@
 
   /* Spacing scale */
   --spacing-section: 8rem;
-  --spacing-container: 1.5rem;
 
   /* Border radius */
   --radius-sm: 0.5rem;
@@ -48,15 +47,20 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   html {
     @apply scroll-smooth;
+    /* Prevent horizontal overflow on all screen sizes */
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-crystal-darker text-text-primary antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    min-width: 320px;
   }
 }
 
@@ -104,12 +108,35 @@
     border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;
   }
 
+  /* Responsive container with fluid padding */
   .container-custom {
     max-width: 1280px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--spacing-container);
-    padding-right: var(--spacing-container);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 480px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
   }
 }
 

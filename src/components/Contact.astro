@@ -17,36 +17,36 @@ const contactInfo = [
 ];
 ---
 
-<section id="contact" class="relative py-32">
+<section id="contact" class="relative py-20 md:py-32">
   <div class="container-custom">
     <!-- Header -->
-    <div class="text-center mb-16" data-animate="fade-in">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+    <div class="text-center mb-12 md:mb-16" data-animate="fade-in">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Get In Touch</span>
       </h2>
       <div
-        class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-blue rounded-full mb-6"
+        class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-blue rounded-full mb-4 sm:mb-6"
       >
       </div>
-      <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
+      <p class="text-sm sm:text-base md:text-lg text-text-tertiary max-w-2xl mx-auto px-2">
         Interested in working together or discussing a remote opportunity? Feel
-        free to reach out — I’m always open to meaningful collaborations.
+        free to reach out — I'm always open to meaningful collaborations.
       </p>
     </div>
 
-    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
       <!-- Contact Form -->
       <div
-        class="glass rounded-2xl p-8 crystal-glow"
+        class="glass rounded-2xl p-6 sm:p-8 crystal-glow"
         data-animate="slide-up"
         data-delay="200"
       >
-        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:send" class="w-6 h-6 text-crystal-cyan" />
+        <h3 class="text-xl sm:text-2xl font-bold mb-5 sm:mb-6 flex items-center gap-2">
+          <Icon name="lucide:send" class="w-5 h-5 sm:w-6 sm:h-6 text-crystal-cyan" />
           Send a Message
         </h3>
 
-        <form class="space-y-6" id="contact-form">
+        <form class="space-y-4 sm:space-y-6" id="contact-form">
           <div>
             <label
               for="name"
@@ -59,7 +59,7 @@ const contactInfo = [
               id="name"
               name="name"
               required
-              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary"
+              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary text-sm sm:text-base"
               placeholder="John Doe"
             />
           </div>
@@ -76,7 +76,7 @@ const contactInfo = [
               id="email"
               name="email"
               required
-              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary"
+              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary text-sm sm:text-base"
               placeholder="john@example.com"
             />
           </div>
@@ -93,34 +93,34 @@ const contactInfo = [
               name="message"
               required
               rows="5"
-              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary resize-none"
+              class="w-full glass glass-hover px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-crystal-cyan transition-all text-text-primary resize-none text-sm sm:text-base"
               placeholder="Tell me about your project or opportunity..."
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full glass glass-hover px-6 py-4 rounded-lg font-semibold transition-all duration-300 crystal-glow-cyan hover:scale-105 flex items-center justify-center gap-2"
+            class="w-full glass glass-hover px-6 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 crystal-glow-cyan hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base"
           >
-            <Icon name="lucide:send" class="w-5 h-5" />
+            <Icon name="lucide:send" class="w-4 h-4 sm:w-5 sm:h-5" />
             Send Message
           </button>
         </form>
       </div>
 
       <!-- Contact Info & Socials -->
-      <div class="space-y-6" data-animate="slide-up" data-delay="400">
+      <div class="space-y-4 sm:space-y-6" data-animate="slide-up" data-delay="400">
         <!-- Contact Info Cards -->
-        <div class="space-y-4">
+        <div class="space-y-3 sm:space-y-4">
           {
             contactInfo.map((info) => (
-              <div class="glass rounded-xl p-6 transition-all duration-300 hover:crystal-glow-purple hover:scale-105">
-                <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 rounded-lg glass flex items-center justify-center shrink-0">
-                    <Icon name={info.icon} class="w-6 h-6 text-crystal-cyan" />
+              <div class="glass rounded-xl p-4 sm:p-6 transition-all duration-300 hover:crystal-glow-purple hover:scale-105">
+                <div class="flex items-start gap-3 sm:gap-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg glass flex items-center justify-center shrink-0">
+                    <Icon name={info.icon} class="w-5 h-5 sm:w-6 sm:h-6 text-crystal-cyan" />
                   </div>
-                  <div>
-                    <div class="text-sm text-text-tertiary mb-1">
+                  <div class="min-w-0">
+                    <div class="text-xs sm:text-sm text-text-tertiary mb-1">
                       {info.label}
                     </div>
                     {info.link ? (
@@ -128,12 +128,12 @@ const contactInfo = [
                         href={info.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-text-primary font-semibold hover:text-crystal-cyan transition-colors"
+                        class="text-sm sm:text-base text-text-primary font-semibold hover:text-crystal-cyan transition-colors break-words"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <div class="text-text-primary font-semibold">
+                      <div class="text-sm sm:text-base text-text-primary font-semibold break-words">
                         {info.value}
                       </div>
                     )}
@@ -145,12 +145,13 @@ const contactInfo = [
         </div>
 
         <!-- Social Links -->
-        <div class="glass rounded-xl p-6">
-          <h4 class="text-lg font-semibold mb-4 flex items-center gap-2">
-            <Icon name="lucide:share-2" class="w-5 h-5 text-crystal-purple" />
+        <div class="glass rounded-xl p-4 sm:p-6">
+          <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2">
+            <Icon name="lucide:share-2" class="w-4 h-4 sm:w-5 sm:h-5 text-crystal-purple" />
             Connect Online
           </h4>
-          <div class="grid grid-cols-3 gap-3">
+          <!-- Only 2 socials — use grid-cols-2 to fill properly -->
+          <div class="grid grid-cols-2 gap-3">
             {
               [
                 {
@@ -168,10 +169,10 @@ const contactInfo = [
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="glass glass-hover p-4 rounded-lg flex flex-col items-center gap-2 transition-all duration-300 hover:crystal-glow hover:scale-110"
+                  class="glass glass-hover p-3 sm:p-4 rounded-lg flex flex-col items-center gap-2 transition-all duration-300 hover:crystal-glow hover:scale-110"
                   aria-label={social.name}
                 >
-                  <Icon name={social.icon} class="w-6 h-6 text-crystal-cyan" />
+                  <Icon name={social.icon} class="w-5 h-5 sm:w-6 sm:h-6 text-crystal-cyan" />
                   <span class="text-xs text-text-tertiary">{social.name}</span>
                 </a>
               ))
@@ -180,9 +181,9 @@ const contactInfo = [
         </div>
 
         <!-- Availability -->
-        <div class="glass rounded-xl p-6">
+        <div class="glass rounded-xl p-4 sm:p-6">
           <div class="flex items-center gap-3">
-            <div class="relative">
+            <div class="relative shrink-0">
               <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse">
               </div>
               <div
@@ -190,11 +191,11 @@ const contactInfo = [
               >
               </div>
             </div>
-            <div>
-              <div class="text-text-primary font-semibold">
+            <div class="min-w-0">
+              <div class="text-sm sm:text-base text-text-primary font-semibold">
                 Open to Remote Opportunities
               </div>
-              <div class="text-sm text-text-tertiary">
+              <div class="text-xs sm:text-sm text-text-tertiary leading-snug">
                 Available for internships, junior roles, and collaborative
                 projects
               </div>

@@ -11,14 +11,14 @@ const navLinks = [
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="container-custom py-4">
-    <div class="glass rounded-2xl px-6 py-4 flex items-center justify-between">
+  <div class="container-custom py-3 md:py-4">
+    <div class="glass rounded-2xl px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between gap-2 min-w-0">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-crystal-blue to-crystal-cyan flex items-center justify-center crystal-glow-cyan transition-transform group-hover:scale-110">
-          <span class="text-lg font-bold text-white">AC</span>
+      <a href="/" class="flex items-center gap-2 group shrink-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-crystal-blue to-crystal-cyan flex items-center justify-center crystal-glow-cyan transition-transform group-hover:scale-110">
+          <span class="text-sm sm:text-base font-bold text-white">AC</span>
         </div>
-        <span class="font-bold text-xl text-text-primary hidden sm:inline">
+        <span class="font-bold text-base sm:text-xl text-text-primary hidden sm:inline truncate max-w-[140px] md:max-w-none">
           Alberto Cisneros
         </span>
       </a>
@@ -29,7 +29,7 @@ const navLinks = [
           <li>
             <a
               href={link.href}
-              class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all duration-300 font-medium"
+              class="px-3 xl:px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all duration-300 font-medium text-sm xl:text-base"
             >
               {link.label}
             </a>
@@ -37,23 +37,24 @@ const navLinks = [
         ))}
       </ul>
 
-      <!-- CTA Button -->
+      <!-- CTA Button — visible md+ but hidden when mobile menu toggle appears (lg) on smaller desktops, keep at md -->
       <a
         href="#contact"
-        class="hidden md:flex items-center gap-2 glass glass-hover px-6 py-2 rounded-lg font-semibold transition-all duration-300 crystal-glow-purple hover:scale-105"
+        class="hidden md:flex items-center gap-2 glass glass-hover px-4 xl:px-6 py-2 rounded-lg font-semibold text-sm xl:text-base transition-all duration-300 crystal-glow-purple hover:scale-105 shrink-0"
       >
         <Icon name="lucide:mail" class="w-4 h-4" />
-        Get in Touch
+        <span class="hidden lg:inline">Get in Touch</span>
+        <span class="lg:hidden">Contact</span>
       </a>
 
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-button"
-        class="lg:hidden glass glass-hover p-2 rounded-lg transition-all duration-300"
+        class="lg:hidden glass glass-hover p-2 rounded-lg transition-all duration-300 shrink-0"
         aria-label="Toggle menu"
       >
-        <Icon name="lucide:menu" class="w-6 h-6" id="menu-icon" />
-        <Icon name="lucide:x" class="w-6 h-6 hidden" id="close-icon" />
+        <Icon name="lucide:menu" class="w-5 h-5 sm:w-6 sm:h-6" id="menu-icon" />
+        <Icon name="lucide:x" class="w-5 h-5 sm:w-6 sm:h-6 hidden" id="close-icon" />
       </button>
     </div>
   </div>
@@ -63,21 +64,21 @@ const navLinks = [
     id="mobile-menu"
     class="lg:hidden fixed inset-0 bg-crystal-darker/95 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center"
   >
-    <ul class="text-center space-y-6">
+    <ul class="text-center space-y-4 sm:space-y-6 px-4 w-full max-w-xs mx-auto">
       {navLinks.map((link) => (
         <li>
           <a
             href={link.href}
-            class="mobile-nav-link block text-2xl font-bold text-text-secondary hover:text-gradient transition-all duration-300 px-8 py-4"
+            class="mobile-nav-link block text-xl sm:text-2xl font-bold text-text-secondary hover:text-gradient transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4"
           >
             {link.label}
           </a>
         </li>
       ))}
-      <li class="pt-6">
+      <li class="pt-4 sm:pt-6">
         <a
           href="#contact"
-          class="mobile-nav-link inline-flex items-center gap-2 glass glass-hover px-8 py-4 rounded-lg font-semibold transition-all duration-300 crystal-glow-cyan"
+          class="mobile-nav-link inline-flex items-center gap-2 glass glass-hover px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 crystal-glow-cyan"
         >
           <Icon name="lucide:mail" class="w-5 h-5" />
           Get in Touch

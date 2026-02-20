@@ -54,47 +54,48 @@ const skillCategories = [
 ];
 ---
 
-<section id="skills" class="relative py-32">
+<section id="skills" class="relative py-20 md:py-32">
   <div class="container-custom">
-    <div class="text-center mb-16" data-animate="fade-in">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+    <div class="text-center mb-12 md:mb-16" data-animate="fade-in">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Skills & Expertise</span>
       </h2>
       <div
-        class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-6"
+        class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-4 sm:mb-6"
       >
       </div>
-      <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
+      <p class="text-sm sm:text-base md:text-lg text-text-tertiary max-w-2xl mx-auto px-2">
         Technologies and tools I use to design, build, and deploy modern web
         applications.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- 4 categories: 1 col → 2 cols → 4 cols to always fill evenly -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
       {
         skillCategories.map((category, index) => (
           <div
-            class="group glass rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
+            class="group glass rounded-2xl p-5 md:p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
             data-animate="slide-up"
             data-delay={index * 100}
           >
-            <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+            <div class="flex items-center gap-3 mb-5 md:mb-6">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110 shrink-0">
                 <Icon
                   name={category.icon}
-                  class={`w-6 h-6 text-${category.color}`}
+                  class={`w-5 h-5 sm:w-6 sm:h-6 text-${category.color}`}
                 />
               </div>
-              <h3 class="text-xl font-bold text-text-primary">
+              <h3 class="text-base sm:text-lg md:text-xl font-bold text-text-primary leading-tight">
                 {category.title}
               </h3>
             </div>
 
-            <ul class="space-y-3">
+            <ul class="space-y-2 sm:space-y-3">
               {category.skills.map((skill) => (
                 <li class="flex items-center gap-2 text-text-secondary transition-all duration-300 hover:text-text-primary hover:translate-x-1">
-                  <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan group-hover:animate-pulse" />
-                  <span class="text-sm">{skill}</span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan group-hover:animate-pulse shrink-0" />
+                  <span class="text-xs sm:text-sm">{skill}</span>
                 </li>
               ))}
             </ul>
@@ -103,8 +104,9 @@ const skillCategories = [
       }
     </div>
 
+    <!-- Stats grid: 2 cols on mobile, 4 on md+ -->
     <div
-      class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+      class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16"
       data-animate="fade-in"
       data-delay="800"
     >
@@ -112,22 +114,24 @@ const skillCategories = [
         [
           { value: "2", label: "Active Projects", icon: "lucide:check-circle" },
           { value: "10+", label: "Technologies", icon: "lucide:code-2" },
-          { value: "Student", label: "Trainee Developer", icon: "lucide:book" },
+          { value: "Student", label: "Trainee Dev", icon: "lucide:book" },
           {
             value: "Always",
-            label: "Learning & Growing",
+            label: "Learning",
             icon: "lucide:sparkles",
           },
         ].map((stat) => (
-          <div class="glass rounded-xl p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
+          <div class="glass rounded-xl p-4 sm:p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
             <Icon
               name={stat.icon}
-              class="w-8 h-8 mx-auto mb-3 text-crystal-cyan"
+              class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-crystal-cyan"
             />
-            <div class="text-3xl font-bold text-gradient mb-2">
+            <div class="text-2xl sm:text-3xl font-bold text-gradient mb-1 sm:mb-2">
               {stat.value}
             </div>
-            <div class="text-sm text-text-tertiary">{stat.label}</div>
+            <div class="text-xs sm:text-sm text-text-tertiary leading-tight">
+              {stat.label}
+            </div>
           </div>
         ))
       }

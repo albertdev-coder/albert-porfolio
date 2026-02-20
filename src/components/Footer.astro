@@ -4,17 +4,19 @@ import { Icon } from "astro-icon/components";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative mt-32 border-t border-white/10">
+<footer class="relative mt-20 md:mt-32 border-t border-white/10">
   <div
     class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-crystal-cyan to-transparent"
   >
   </div>
 
-  <div class="container-custom py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-      <div class="space-y-6">
+  <div class="container-custom py-12 md:py-16">
+    <!-- 3 real columns: brand + Navigation + Projects -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-12">
+      <!-- Brand block (full width on mobile, spans 2 cols on sm, then 1 on lg) -->
+      <div class="space-y-5 sm:col-span-2 lg:col-span-1">
         <div>
-          <h3 class="text-2xl font-bold text-gradient mb-2">
+          <h3 class="text-xl sm:text-2xl font-bold text-gradient mb-1">
             Alberto Cisneros
           </h3>
           <p class="text-text-tertiary text-sm">
@@ -22,7 +24,7 @@ const currentYear = new Date().getFullYear();
           </p>
         </div>
 
-        <p class="text-text-secondary text-sm leading-relaxed">
+        <p class="text-text-secondary text-sm leading-relaxed max-w-sm">
           Building exceptional web experiences with modern technologies and a
           commitment to excellence.
         </p>
@@ -106,15 +108,15 @@ const currentYear = new Date().getFullYear();
       }
     </div>
 
-    <div class="border-t border-white/5 pt-8">
+    <div class="border-t border-white/5 pt-6 sm:pt-8">
       <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-tertiary"
+        class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs sm:text-sm text-text-tertiary"
       >
         <span>© {currentYear} Alberto Cisneros Morando.</span>
 
         <div class="flex items-center gap-2">
           <span>Crafted with</span>
-          <Icon name="lucide:sparkles" class="w-4 h-4 text-crystal-cyan" />
+          <Icon name="lucide:sparkles" class="w-3 h-3 sm:w-4 sm:h-4 text-crystal-cyan" />
           <span>Astro</span>
         </div>
       </div>
@@ -122,12 +124,13 @@ const currentYear = new Date().getFullYear();
   </div>
 </footer>
 
+<!-- Back to top — repositioned to avoid overlap with mobile browser UI -->
 <button
   id="back-to-top"
-  class="fixed bottom-8 right-8 glass glass-hover p-4 rounded-full crystal-glow-cyan transition-all duration-300 opacity-0 pointer-events-none hover:scale-110 z-50"
+  class="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 md:right-8 glass glass-hover p-3 sm:p-4 rounded-full crystal-glow-cyan transition-all duration-300 opacity-0 pointer-events-none hover:scale-110 z-50"
   aria-label="Back to top"
 >
-  <Icon name="lucide:arrow-up" class="w-6 h-6" />
+  <Icon name="lucide:arrow-up" class="w-5 h-5 sm:w-6 sm:h-6" />
 </button>
 
 <script>
