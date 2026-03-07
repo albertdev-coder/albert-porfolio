@@ -90,7 +90,6 @@ const navLinks = [
 
 <script>
   // Scroll behavior for navbar
-  let lastScroll = 0;
   const nav = document.getElementById('main-nav');
 
   window.addEventListener('scroll', () => {
@@ -102,8 +101,6 @@ const navLinks = [
     } else {
       nav?.classList.remove('backdrop-blur-xl');
     }
-
-    lastScroll = currentScroll;
   });
 
   // Mobile menu toggle
@@ -154,7 +151,7 @@ const navLinks = [
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
       if (href && href !== '#') {
         e.preventDefault();
         const target = document.querySelector(href);

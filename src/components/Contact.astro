@@ -207,11 +207,13 @@ const contactInfo = [
   </div>
 </section>
 
-<script type="module">
-  const form = document.getElementById("contact-form");
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (!form) return;
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
