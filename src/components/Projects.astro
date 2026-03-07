@@ -1,24 +1,34 @@
 ---
 import { Icon } from "astro-icon/components";
+import quizImg1 from "../assets/quizz-ciencia-1.png";
+import quizImg2 from "../assets/quizz-ciencia-2.png";
+import quizImg3 from "../assets/quizz-ciencia-3.png";
 
-import img1 from "../assets/quizz-ciencia-1.png";
-import img2 from "../assets/quizz-ciencia-2.png";
-import img3 from "../assets/quizz-ciencia-3.png";
+import bit1 from "../assets/bitverso-1.png";
+import bit2 from "../assets/bitverso-2.png";
+import bit3 from "../assets/bitverso-3.png";
 
-const projects = [
+import "photoswipe/style.css";
+
+import type { ImageMetadata } from "astro";
+
+type Project = {
+  title: string;
+  description: string;
+  stack: string[];
+  screenshots: ImageMetadata[];
+  link: string;
+  github: string;
+  featured: boolean;
+};
+
+const projects: Project[] = [
   {
     title: "Educational PWA Platform",
     description:
-      "An educational platform focused on helping users learn web development fundamentals. It offers structured courses in HTML, CSS, and JavaScript, guiding students through practical exercises to build real projects and start their own portfolio.",
-    stack: [
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "Node.js",
-      "PostgreSQL",
-    ],
-    image: "/projects/edu-platform.jpg",
+      "An educational platform focused on helping users learn web development fundamentals. It offers structured courses in HTML, CSS, and JavaScript, guiding students through practical exercises to build real projects.",
+    stack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
+    screenshots: [bit1, bit2, bit3],
     link: "https://bitverso-one.vercel.app",
     github: "https://github.com/albertdev-coder/course-pwa",
     featured: true,
@@ -26,16 +36,9 @@ const projects = [
   {
     title: "Interactive Quiz Application",
     description:
-      "A minimalist and user-friendly science quiz application designed for different age groups. It includes four difficulty levels (Child, Teen, Adult, and Mixed), and adaptive difficulty logic. Built as a full-stack application focused on performance, clean architecture, and engaging user experience.",
-    stack: [
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "Node.js",
-      "PostgreSQL",
-    ],
-    image: "/projects/quiz-app.jpg",
+      "A minimalist science quiz application with multiple difficulty levels and adaptive logic.",
+    stack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
+    screenshots: [quizImg1, quizImg2, quizImg3],
     link: "https://quizz-ciencia.up.railway.app",
     github: "https://github.com/albertdev-coder/lol-quizz",
     featured: true,
@@ -45,140 +48,114 @@ const projects = [
 
 <section id="projects" class="relative py-20 md:py-32">
   <div class="container-custom">
-    <!-- Section Header -->
-    <div class="text-center mb-12 md:mb-16" data-animate="fade-in">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+    <div class="text-center mb-16" data-animate="fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Featured Projects</span>
       </h2>
-      <div
-        class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-purple to-crystal-pink rounded-full mb-4 sm:mb-6"
-      >
-      </div>
-      <p
-        class="text-sm sm:text-base md:text-lg text-text-tertiary max-w-2xl mx-auto px-2"
-      >
-        Selected full-stack projects showcasing real-world problem solving,
-        scalable architecture, and modern web technologies.
+      <div class="h-1 w-20 mx-auto bg-gradient-to-r from-crystal-purple to-crystal-pink rounded-full mb-6"></div>
+      <p class="text-lg text-text-tertiary max-w-2xl mx-auto">
+        Selected full-stack projects showcasing scalable architecture and modern web technologies.
       </p>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-      {
-        projects.map((project, index) => (
-          <div
-            class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02]"
-            class:list={[project.featured ? "crystal-glow-purple" : ""]}
-            data-animate="slide-up"
-            data-delay={index * 150}
-          >
-            {/* Project Image */}
-            <div class="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-gradient-to-br from-crystal-blue/20 to-crystal-purple/20">
-              {project.title === "Interactive Quiz Application" ? (
-                <div class="grid grid-cols-3 gap-2 h-full p-3">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {projects.map((project, index) => (
+        <article
+          class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02]"
+          data-animate="slide-up"
+          data-delay={index * 120}
+          aria-labelledby={`project-title-${index}`}
+        >
+          <div class="relative h-72 overflow-hidden bg-gradient-to-br from-crystal-blue/10 to-crystal-purple/10">
+            <div 
+              class="pswp-gallery grid grid-cols-3 gap-2 h-full p-3" 
+              id={`gallery-${index}`}
+            >
+              {project.screenshots.map((img, i) => (
+                <a
+                  href={img.src}
+                  data-pswp-width={img.width || 1200}
+                  data-pswp-height={img.height || 800}
+                  target="_blank"
+                  class="block rounded-lg overflow-hidden cursor-zoom-in"
+                  data-caption={`${project.title} — Screenshot ${i + 1}`}
+                >
                   <img
-                    src={img1.src}
-                    alt="Quiz Ciencia Screenshot 1"
+                    src={img.src}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    loading="lazy"
+                    decoding="async"
                     class="object-cover w-full h-full rounded-lg hover:scale-105 transition-transform duration-300"
                   />
-                  <img
-                    src={img2.src}
-                    alt="Quiz Ciencia Screenshot 2"
-                    class="object-cover w-full h-full rounded-lg hover:scale-105 transition-transform duration-300"
-                  />
-                  <img
-                    src={img3.src}
-                    alt="Quiz Ciencia Screenshot 3"
-                    class="object-cover w-full h-full rounded-lg hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              ) : (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-full object-cover"
-                />
-              )}
-
-              {project.featured && (
-                <div class="absolute top-3 right-3 sm:top-4 sm:right-4 glass px-2 sm:px-3 py-1 rounded-full text-xs font-semibold text-crystal-cyan flex items-center gap-1">
-                  <Icon name="lucide:star" class="w-3 h-3" />
-                  Featured
-                </div>
-              )}
+                </a>
+              ))}
             </div>
 
-            {/* Project Content */}
-            <div class="p-4 sm:p-6 space-y-3 sm:space-y-4">
-              <div class="flex items-start justify-between gap-3">
-                <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-text-primary group-hover:text-gradient transition-all leading-tight">
-                  {project.title}
-                </h3>
-                <div class="flex gap-2 shrink-0">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="glass glass-hover p-2 rounded-lg transition-all hover:crystal-glow-cyan"
-                    aria-label="View project"
-                  >
-                    <Icon
-                      name="lucide:external-link"
-                      class="w-4 h-4 sm:w-5 sm:h-5"
-                    />
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="glass glass-hover p-2 rounded-lg transition-all hover:crystal-glow-cyan"
-                    aria-label="View source code"
-                  >
-                    <Icon name="lucide:github" class="w-4 h-4 sm:w-5 sm:h-5" />
-                  </a>
-                </div>
+            {project.featured && (
+              <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-semibold text-crystal-cyan flex items-center gap-1">
+                <Icon name="lucide:star" class="w-3 h-3" />
+                Featured
               </div>
+            )}
+          </div>
 
-              <p class="text-sm sm:text-base text-text-secondary leading-relaxed">
-                {project.description}
-              </p>
+          <div class="p-6 space-y-4">
+            <div class="flex items-start justify-between">
+              <h3 id={`project-title-${index}`} class="text-xl md:text-2xl font-bold group-hover:text-gradient">
+                {project.title}
+              </h3>
 
-              {/* Tech Stack */}
-              <div class="flex flex-wrap gap-2 pt-1 sm:pt-2">
-                {project.stack.map((tech) => (
-                  <span class="glass px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm text-text-tertiary">
-                    {tech}
-                  </span>
-                ))}
+              <div class="flex gap-2">
+                <a href={project.link} target="_blank" class="glass glass-hover p-2 rounded-lg hover:crystal-glow-cyan" aria-label="View project" rel="noopener noreferrer">
+                  <Icon name="lucide:external-link" class="w-5 h-5" />
+                </a>
+
+                <a href={project.github} target="_blank" class="glass glass-hover p-2 rounded-lg hover:crystal-glow-cyan" aria-label="View source" rel="noopener noreferrer">
+                  <Icon name="lucide:github" class="w-5 h-5" />
+                </a>
               </div>
+            </div>
+
+            <p class="text-text-secondary">{project.description}</p>
+
+            <div class="flex flex-wrap gap-2">
+              {project.stack.map((tech) => (
+                <span class="glass px-3 py-1 rounded-full text-sm text-text-tertiary">{tech}</span>
+              ))}
             </div>
           </div>
-        ))
-      }
+        </article>
+      ))}
     </div>
   </div>
 </section>
 
 <script>
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-  };
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute("data-delay") || "0";
-        setTimeout(() => {
-          entry.target.classList.add("animate-in");
-        }, parseInt(delay));
-        observer.unobserve(entry.target);
-      }
+  document.addEventListener("DOMContentLoaded", () => {
+    const galleries = document.querySelectorAll(".pswp-gallery");
+    
+    galleries.forEach((gallery) => {
+      if (!(gallery instanceof HTMLElement)) return;
+      
+      const lightbox = new PhotoSwipeLightbox({
+        gallery: gallery,
+        children: "a",
+        pswpModule: () => import("photoswipe"),
+        showHideAnimationType: "fade",
+        bgOpacity: 0.9,
+        padding: { top: 60, bottom: 60, left: 20, right: 20 },
+        wheelToZoom: true,
+        clickToCloseNonZoomable: true,
+        imageClickAction: "zoom",
+        bgClickAction: "close",
+        preloaderDelay: 0,
+        maxWidthToAnimate: 2500,
+      });
+
+      lightbox.init();
     });
-  }, observerOptions);
-
-  document.querySelectorAll("#projects [data-animate]").forEach((el) => {
-    observer.observe(el);
   });
 </script>
 
@@ -186,13 +163,22 @@ const projects = [
   #projects [data-animate] {
     opacity: 0;
     transform: translateY(30px);
-    transition:
-      opacity 0.8s ease-out,
-      transform 0.8s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
-
   #projects [data-animate].animate-in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .pswp-gallery a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .pswp-gallery img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 </style>
