@@ -15,18 +15,19 @@ import type { ImageMetadata } from "astro";
 type Project = {
   title: string;
   description: string;
+  details: string;
   stack: string[];
   screenshots: ImageMetadata[];
   link: string;
   github: string;
-  featured: boolean;
+  featured?: boolean;
 };
 
 const projects: Project[] = [
   {
     title: "Educational PWA Platform",
-    description:
-      "An educational platform focused on helping users learn web development fundamentals. It offers structured courses in HTML, CSS, and JavaScript, guiding students through practical exercises to build real projects.",
+    description: "A compact PWA for structured web-development courses with interactive exercises.",
+    details: "Problem: Provide a lightweight, offline-capable learning platform for students with limited bandwidth. Tech & Architecture: Next.js (frontend SSR/SSG), React, TypeScript, Node.js + Express API, PostgreSQL. Features: offline support (PWA), course progress sync, lesson quizzes, admin panel for content management. My contribution: full-stack implementation of course flow, API endpoints, and deployment on Vercel/Railway.",
     stack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
     screenshots: [bit1, bit2, bit3],
     link: "https://bitverso-one.vercel.app",
@@ -35,8 +36,8 @@ const projects: Project[] = [
   },
   {
     title: "Interactive Quiz Application",
-    description:
-      "A minimalist science quiz application with multiple difficulty levels and adaptive logic.",
+    description: "Minimal science quiz app with multiple difficulty levels and adaptive scoring.",
+    details: "Problem: Create a responsive quiz app that adapts question difficulty and keeps user progress. Tech & Architecture: Next.js frontend, client-side React state, Express API for results and leaderboards, PostgreSQL for persistence. Features: timed quizzes, adaptive difficulty, results/history, responsive UI and PWA-friendly UI. My contribution: quiz engine, adaptive logic, API endpoints and Railway deployment.",
     stack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
     screenshots: [quizImg1, quizImg2, quizImg3],
     link: "https://quizz-ciencia.up.railway.app",
@@ -58,26 +59,30 @@ const projects: Project[] = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
       {projects.map((project, index) => (
         <article
+          key={project.title}
           class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02]"
           data-animate="slide-up"
           data-delay={index * 120}
           aria-labelledby={`project-title-${index}`}
         >
-          <div class="relative h-72 overflow-hidden bg-gradient-to-br from-crystal-blue/10 to-crystal-purple/10">
-            <div 
-              class="pswp-gallery grid grid-cols-3 gap-2 h-full p-3" 
+          <div class="relative overflow-hidden bg-gradient-to-br from-crystal-blue/10 to-crystal-purple/10">
+            <div
+              class="pswp-gallery grid grid-cols-2 md:grid-cols-3 gap-2 p-3"
               id={`gallery-${index}`}
+              aria-hidden="false"
             >
               {project.screenshots.map((img, i) => (
                 <a
+                  key={`${project.title}-img-${i}`}
                   href={img.src}
                   data-pswp-width={img.width || 1200}
                   data-pswp-height={img.height || 800}
                   target="_blank"
-                  class="block rounded-lg overflow-hidden cursor-zoom-in"
+                  rel="noopener noreferrer"
+                  class="block rounded-lg overflow-hidden cursor-zoom-in aspect-[4/3]"
                   data-caption={`${project.title} — Screenshot ${i + 1}`}
                 >
                   <img
@@ -93,8 +98,9 @@ const projects: Project[] = [
 
             {project.featured && (
               <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-semibold text-crystal-cyan flex items-center gap-1">
-                <Icon name="lucide:star" class="w-3 h-3" />
-                Featured
+                <Icon name="lucide:star" class="w-3 h-3" aria-hidden="true" />
+                <span class="sr-only">Featured project</span>
+                <span>Featured</span>
               </div>
             )}
           </div>
@@ -106,11 +112,23 @@ const projects: Project[] = [
               </h3>
 
               <div class="flex gap-2">
-                <a href={project.link} target="_blank" class="glass glass-hover p-2 rounded-lg hover:crystal-glow-cyan" aria-label="View project" rel="noopener noreferrer">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  class="glass glass-hover p-2 rounded-lg hover:crystal-glow-cyan"
+                  aria-label={`Open ${project.title} live demo`}
+                  rel="noopener noreferrer"
+                >
                   <Icon name="lucide:external-link" class="w-5 h-5" />
                 </a>
 
-                <a href={project.github} target="_blank" class="glass glass-hover p-2 rounded-lg hover:crystal-glow-cyan" aria-label="View source" rel="noopener noreferrer">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  class="glass glass-hover p-2 rounded-lg hover:crystal-glow-cyan"
+                  aria-label={`Open ${project.title} source code on GitHub`}
+                  rel="noopener noreferrer"
+                >
                   <Icon name="lucide:github" class="w-5 h-5" />
                 </a>
               </div>
@@ -118,11 +136,20 @@ const projects: Project[] = [
 
             <p class="text-text-secondary">{project.description}</p>
 
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2" aria-hidden="false">
               {project.stack.map((tech) => (
-                <span class="glass px-3 py-1 rounded-full text-sm text-text-tertiary">{tech}</span>
+                <span key={`${project.title}-tag-${tech}`} class="glass px-3 py-1 rounded-full text-sm text-text-tertiary">
+                  {tech}
+                </span>
               ))}
             </div>
+
+            <details class="mt-2">
+              <summary class="cursor-pointer text-sm font-medium text-text-primary">Project details</summary>
+              <div class="mt-2 text-sm text-text-secondary">
+                {project.details}
+              </div>
+            </details>
           </div>
         </article>
       ))}
@@ -130,17 +157,17 @@ const projects: Project[] = [
   </div>
 </section>
 
-<script>
+<script type="module">
   import PhotoSwipeLightbox from "photoswipe/lightbox";
 
   document.addEventListener("DOMContentLoaded", () => {
     const galleries = document.querySelectorAll(".pswp-gallery");
-    
+
     galleries.forEach((gallery) => {
       if (!(gallery instanceof HTMLElement)) return;
-      
+
       const lightbox = new PhotoSwipeLightbox({
-        gallery: gallery,
+        gallery,
         children: "a",
         pswpModule: () => import("photoswipe"),
         showHideAnimationType: "fade",
@@ -173,12 +200,42 @@ const projects: Project[] = [
   .pswp-gallery a {
     display: block;
     width: 100%;
-    height: 100%;
   }
   .pswp-gallery img {
     display: block;
     object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+
+  details summary {
+    list-style: none;
+  }
+  details[open] summary::after {
+    content: "▲";
+    float: right;
+  }
+  details summary::after {
+    content: "▼";
+    float: right;
+  }
+
+  /* Make grid responsive for mobile/tablet */
+  @media (max-width: 768px) {
+    .pswp-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pswp-gallery a {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pswp-gallery {
+      grid-template-columns: 1fr;
+    }
+    .pswp-gallery a {
+      aspect-ratio: 16 / 9;
+    }
   }
 </style>

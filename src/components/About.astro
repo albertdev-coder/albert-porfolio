@@ -3,12 +3,11 @@ import { Icon } from "astro-icon/components";
 
 const mainSkills = [
   "Full-Stack Web Application Development",
-  "Responsive & Accessible UI Design",
-  "REST API Integration",
-  "Clean & Maintainable Code Practices",
+  "Responsive and Accessible UI Design (a11y)",
+  "REST API Integration and Consumption",
+  "Best Practices: Clean Code, Testing, and Documentation",
 ];
 ---
-
 <section id="about" class="relative py-20 md:py-32">
   <div class="container-custom">
     <!-- Section Header -->
@@ -37,25 +36,28 @@ const mainSkills = [
             >
               <Icon name="lucide:user" class="w-5 h-5 sm:w-6 sm:h-6 text-crystal-cyan" />
             </div>
-            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-text-primary leading-tight">
-              Alberto Cisneros Morando
-            </h3>
+            <div>
+              <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-text-primary leading-tight">
+                Alberto Cisneros Morando
+              </h3>
+              <p class="text-sm text-text-tertiary">
+                Informatics Engineering Student — University of Camagüey, Cuba
+              </p>
+            </div>
           </div>
 
           <p class="text-base sm:text-lg text-text-secondary leading-relaxed">
-            I'm an Informatics Engineering student and aspiring full-stack
-            developer focused on building real-world web applications. I
-            specialize in creating modern, responsive platforms using
-            technologies like React, Next.js, and Node.js, turning ideas into
-            deployed products with clean architecture and practical
-            functionality.
+            I am an Informatics Engineering student and aspiring full-stack developer
+            with hands-on experience building real-world web applications. I focus on
+            transforming ideas into functional digital products using clean architecture,
+            reliable backend systems, and intuitive user experiences.
           </p>
 
           <p class="text-base sm:text-lg text-text-secondary leading-relaxed">
-            I enjoy solving problems through code, designing intuitive user
-            experiences, and continuously improving my technical skills. My goal
-            is to contribute to impactful remote teams where I can grow as a
-            developer while delivering reliable and scalable solutions.
+            I enjoy solving problems through code, collaborating in product-focused
+            environments, and continuously improving my technical skills. My goal is
+            to contribute to remote teams where I can grow as a developer while helping
+            build reliable and scalable software solutions.
           </p>
         </div>
 
@@ -75,6 +77,15 @@ const mainSkills = [
               ))
             }
           </div>
+        </div>
+
+        <!-- Optional quick CTA -->
+        <div class="pt-2" data-animate="slide-up" data-delay="600">
+          <p class="text-sm text-text-tertiary max-w-2xl mx-auto text-center">
+            I’m open to collaborating on remote projects and junior developer
+            opportunities. Feel free to explore my projects to see real implementations
+            and links to the source code.
+          </p>
         </div>
       </div>
     </div>

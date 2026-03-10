@@ -1,19 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
-
 const skillCategories = [
   {
-    title: "Frontend Development",
+    title: "Frontend Engineering",
     icon: "lucide:palette",
     color: "crystal-blue",
     skills: [
-      "React & Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Astro",
-      "HTML5 & CSS3",
-      "Responsive Design",
-      "Basic Web Animations",
+      { name: "React & Next.js", note: "Component-driven UIs, SSR/SSG, and routing" },
+      { name: "TypeScript", note: "Static typing to ensure robust and maintainable code" },
+      { name: "Tailwind CSS", note: "Utility-first styling for responsive, modern interfaces" },
+      { name: "Astro", note: "Optimized static sites with fast performance" },
+      { name: "HTML5 & Modern CSS", note: "Semantic markup and accessibility (a11y) compliance" },
+      { name: "Responsive & Mobile-First", note: "Interfaces that adapt seamlessly across devices" },
+      { name: "Component Architecture", note: "Separation of concerns and reusable UI patterns" }
     ],
   },
   {
@@ -21,36 +20,57 @@ const skillCategories = [
     icon: "lucide:server",
     color: "crystal-purple",
     skills: [
-      "Node.js & Express",
-      "REST API Development",
-      "Authentication (JWT)",
-      "Basic WebSockets",
-      "API Validation",
+      { name: "Node.js & Express.js", note: "REST APIs, middleware design, and routing" },
+      { name: "RESTful API Design", note: "Clean endpoints and proper HTTP verb usage" },
+      { name: "Authentication & Authorization (JWT)", note: "Secure user sessions and access control" },
+      { name: "Validation & Error Handling", note: "Validated input and centralized error management" },
+      { name: "WebSockets", note: "Real-time communication and event-driven features" },
+      { name: "Server-Side Architecture", note: "Layered architecture for maintainability" }
     ],
   },
   {
-    title: "Databases",
+    title: "Databases & Data Layer",
     icon: "lucide:database",
     color: "crystal-cyan",
     skills: [
-      "PostgreSQL",
-      "Drizzle ORM",
-      "Relational Database Design",
-      "Basic Query Optimization",
+      { name: "PostgreSQL", note: "Relational modeling and SQL query optimization" },
+      { name: "Drizzle ORM", note: "Typed queries and migrations for data integrity" },
+      { name: "Data Modeling", note: "Designing normalized schemas and relationships" },
+      { name: "Query Optimization", note: "Indexes, joins, and efficient CRUD operations" },
+      { name: "Migrations & Seeds", note: "Database versioning and initial data setup" }
     ],
   },
   {
-    title: "Tools & Workflow",
+    title: "Tools, DevOps & Workflow",
     icon: "lucide:settings",
     color: "crystal-violet",
     skills: [
-      "Git & GitHub",
-      "Deployment (Vercel / Railway)",
-      "Linux Basics",
-      "Environment Configuration",
-      "Performance Optimization",
+      { name: "Git & GitHub (Branching)", note: "Clean commits, pull requests, and code reviews" },
+      { name: "Deployment (Vercel / Railway / Cloudflare)", note: "CI/CD pipelines for front-end and back-end" },
+      { name: "Environment Config (.env)", note: "Secure management of environment variables" },
+      { name: "Linux Development", note: "Command-line workflow and local debugging" },
+      { name: "Debugging & Tooling", note: "DevTools, Node inspector, and logging best practices" },
+      { name: "Docker", note: "Containerization and reproducible environments" }
     ],
   },
+  {
+    title: "Quality, Testing & Security",
+    icon: "lucide:shield-check",
+    color: "crystal-cyan",
+    skills: [
+      { name: "Unit Testing (Vitest)", note: "Testing critical logic and functions" },
+      { name: "E2E / Integration Testing", note: "Playwright-based end-to-end workflows" },
+      { name: "Linters & Formatters", note: "ESLint and Prettier for consistent code style" },
+      { name: "Security Fundamentals", note: "OWASP practices for XSS, CSRF, and injection prevention" }
+    ],
+  },
+];
+
+const stats = [
+  { value: "3+", label: "Projects Built", icon: "lucide:check-circle" },
+  { value: "12+", label: "Technologies", icon: "lucide:code-2" },
+  { value: "Full-Stack", label: "Development Focus", icon: "lucide:layers" },
+  { value: "Continuous", label: "Learning", icon: "lucide:sparkles" },
 ];
 ---
 
@@ -60,117 +80,75 @@ const skillCategories = [
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
         <span class="text-gradient">Skills & Expertise</span>
       </h2>
-      <div
-        class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-4 sm:mb-6"
-      >
-      </div>
+      <div class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-4 sm:mb-6"></div>
       <p class="text-sm sm:text-base md:text-lg text-text-tertiary max-w-2xl mx-auto px-2">
-        Technologies and tools I use to design, build, and deploy modern web
-        applications.
+        Core technologies and engineering practices I apply to design, develop, and deploy modern full-stack web applications.
       </p>
     </div>
 
-    <!-- 4 categories: 1 col → 2 cols → 4 cols to always fill evenly -->
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
-      {
-        skillCategories.map((category, index) => (
-          <div
-            class="group glass rounded-2xl p-5 md:p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
-            data-animate="slide-up"
-            data-delay={index * 100}
-          >
-            <div class="flex items-center gap-3 mb-5 md:mb-6">
-              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110 shrink-0">
-                <Icon
-                  name={category.icon}
-                  class={`w-5 h-5 sm:w-6 sm:h-6 text-${category.color}`}
-                />
-              </div>
-              <h3 class="text-base sm:text-lg md:text-xl font-bold text-text-primary leading-tight">
-                {category.title}
-              </h3>
+      {skillCategories.map((category, index) => (
+        <div
+          key={category.title}
+          class="group glass rounded-2xl p-5 md:p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
+          data-animate="slide-up"
+          data-delay={index * 100}
+        >
+          <div class="flex items-center gap-3 mb-5 md:mb-6">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110 shrink-0">
+              <Icon name={category.icon} class={`w-5 h-5 sm:w-6 sm:h-6 text-${category.color}`} />
             </div>
-
-            <ul class="space-y-2 sm:space-y-3">
-              {category.skills.map((skill) => (
-                <li class="flex items-center gap-2 text-text-secondary transition-all duration-300 hover:text-text-primary hover:translate-x-1">
-                  <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan group-hover:animate-pulse shrink-0" />
-                  <span class="text-xs sm:text-sm">{skill}</span>
-                </li>
-              ))}
-            </ul>
+            <h3 class="text-base sm:text-lg md:text-xl font-bold text-text-primary leading-tight">{category.title}</h3>
           </div>
-        ))
-      }
+
+          <ul class="space-y-2 sm:space-y-3">
+            {category.skills.map((skill) => (
+              <li key={skill.name} class="flex flex-col gap-1 text-text-secondary transition-all duration-300 hover:text-text-primary">
+                <div class="flex items-baseline gap-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan shrink-0" />
+                  <span class="text-sm sm:text-base font-semibold">{skill.name}</span>
+                </div>
+                <div class="pl-6 text-xs sm:text-sm text-text-tertiary leading-tight">{skill.note}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
 
-    <!-- Stats grid: 2 cols on mobile, 4 on md+ -->
-    <div
-      class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16"
-      data-animate="fade-in"
-      data-delay="800"
-    >
-      {
-        [
-          { value: "2", label: "Active Projects", icon: "lucide:check-circle" },
-          { value: "10+", label: "Technologies", icon: "lucide:code-2" },
-          { value: "Student", label: "Trainee Dev", icon: "lucide:book" },
-          {
-            value: "Always",
-            label: "Learning",
-            icon: "lucide:sparkles",
-          },
-        ].map((stat) => (
-          <div class="glass rounded-xl p-4 sm:p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
-            <Icon
-              name={stat.icon}
-              class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-crystal-cyan"
-            />
-            <div class="text-2xl sm:text-3xl font-bold text-gradient mb-1 sm:mb-2">
-              {stat.value}
-            </div>
-            <div class="text-xs sm:text-sm text-text-tertiary leading-tight">
-              {stat.label}
-            </div>
-          </div>
-        ))
-      }
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16" data-animate="fade-in" data-delay="800">
+      {stats.map((stat) => (
+        <div key={stat.label} class="glass rounded-xl p-4 sm:p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
+          <Icon name={stat.icon} class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-crystal-cyan" />
+          <div class="text-2xl sm:text-3xl font-bold text-gradient mb-1 sm:mb-2">{stat.value}</div>
+          <div class="text-xs sm:text-sm text-text-tertiary leading-tight">{stat.label}</div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <script>
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-  };
-
+  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const delay = entry.target.getAttribute("data-delay") || "0";
-        setTimeout(() => {
-          entry.target.classList.add("animate-in");
-        }, parseInt(delay));
+        setTimeout(() => entry.target.classList.add("animate-in"), parseInt(delay));
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll("#skills [data-animate]").forEach((el) => {
-    observer.observe(el);
-  });
+  document.querySelectorAll("#skills [data-animate]").forEach((el) => observer.observe(el));
 </script>
 
 <style>
   #skills [data-animate] {
     opacity: 0;
     transform: translateY(30px);
-    transition:
-      opacity 0.8s ease-out,
-      transform 0.8s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
-
   #skills [data-animate].animate-in {
     opacity: 1;
     transform: translateY(0);
