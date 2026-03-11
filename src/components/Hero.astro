@@ -13,148 +13,96 @@ import { Icon } from "astro-icon/components";
         <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.5"></stop>
           <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.5"></stop>
-          <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.5"
-          ></stop>
+          <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.5"></stop>
         </linearGradient>
       </defs>
-      <line
-        x1="0"
-        y1="0"
-        x2="100%"
-        y2="100%"
-        stroke="url(#line-gradient)"
-        stroke-width="1"
-        class="animate-pulse"></line>
-      <line
-        x1="100%"
-        y1="0"
-        x2="0"
-        y2="100%"
-        stroke="url(#line-gradient)"
-        stroke-width="1"
-        class="animate-pulse"
-        style="animation-delay: 0.5s;"></line>
+      <line x1="0" y1="0" x2="100%" y2="100%" stroke="url(#line-gradient)" stroke-width="1" class="animate-pulse"/>
+      <line x1="100%" y1="0" x2="0" y2="100%" stroke="url(#line-gradient)" stroke-width="1" class="animate-pulse" style="animation-delay:0.5s"/>
     </svg>
   </div>
 
   <div class="container-custom relative z-10 py-24 md:py-20">
-    <div class="max-w-5xl mx-auto text-center space-y-6 md:space-y-8">
-      <!-- Name with glow -->
-      <div class="space-y-4" data-animate="fade-in">
-        <h1 class="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight">
-          <span class="text-gradient crystal-glow"> Alberto Cisneros </span>
-        </h1>
-        <div
-          class="h-1 w-24 sm:w-32 mx-auto bg-gradient-to-r from-crystal-blue via-crystal-purple to-crystal-cyan rounded-full"
-        >
+    <!-- Grid: text + photo -->
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 items-center gap-8">
+      
+      <!-- Text Column -->
+      <div class="md:col-span-7 text-center md:text-left space-y-6 md:space-y-8">
+        <div class="space-y-4" data-animate="fade-in" data-delay="0">
+          <h1 class="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight">
+            <span class="text-gradient crystal-glow">Alberto Cisneros</span>
+          </h1>
+          <div class="h-1 w-24 sm:w-32 mx-auto md:mx-0 bg-gradient-to-r from-crystal-blue via-crystal-purple to-crystal-cyan rounded-full"></div>
+        </div>
+
+        <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-text-secondary px-2" data-animate="slide-up" data-delay="200">
+          Junior Full-Stack Web Developer
+        </h2>
+
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl text-text-tertiary max-w-3xl leading-relaxed px-2" data-animate="slide-up" data-delay="400">
+          Software Engineering student at the University of Camagüey based in Cuba. I focus on designing and building modern web applications with clean architecture, scalable systems, and intuitive user experiences. Currently seeking remote opportunities where I can contribute to real-world products and continue growing as a software engineer.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center pt-4 sm:pt-8 px-4" data-animate="slide-up" data-delay="600">
+          <a href="#projects" class="group glass glass-hover w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 crystal-glow-cyan flex items-center justify-center gap-2 hover:scale-105">
+            <Icon name="lucide:rocket" class="w-4 h-4 sm:w-5 sm:h-5" />
+            View Projects
+            <Icon name="lucide:arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+
+          <a href="/cv.pdf" download class="group glass glass-hover w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 border-crystal-purple">
+            <Icon name="lucide:download" class="w-4 h-4 sm:w-5 sm:h-5" />
+            Download CV
+          </a>
         </div>
       </div>
 
-      <!-- Subtitle -->
-      <h2
-        class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-text-secondary px-2"
-        data-animate="slide-up"
-        data-delay="200"
-      >
-        Junior Full-Stack Web Developer
-      </h2>
+      <!-- Photo Column -->
+      <div class="md:col-span-5 flex justify-center md:justify-end items-center" data-animate="slide-up" data-delay="300">
+        <div class="relative">
+          <div class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white/8 shadow-lg">
+            <img src="/my-photo.png" alt="Profile photo of Alberto Cisneros" loading="eager" decoding="async" class="w-full h-full object-cover"/>
+          </div>
 
-      <!-- Tagline -->
-      <p
-        class="text-sm sm:text-base md:text-lg lg:text-xl text-text-tertiary max-w-3xl mx-auto leading-relaxed px-2"
-        data-animate="slide-up"
-        data-delay="400"
-      >
-        Software Engineering student at the University of Camagüey based in Cuba.
-        I focus on designing and building modern web applications with clean architecture,
-        scalable systems, and intuitive user experiences.
-
-        Currently seeking remote opportunities where I can contribute to real-world
-        products and continue growing as a software engineer.
-      </p>
-
-      <!-- CTA Buttons -->
-      <div
-        class="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-8 px-4"
-        data-animate="slide-up"
-        data-delay="600"
-      >
-        <a
-          href="#projects"
-          class="group glass glass-hover w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 crystal-glow-cyan flex items-center justify-center gap-2 hover:scale-105"
-        >
-          <Icon name="lucide:rocket" class="w-4 h-4 sm:w-5 sm:h-5" />
-          View Projects
-          <Icon
-            name="lucide:arrow-right"
-            class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
-          />
-        </a>
-
-        <a
-          href="/cv.pdf"
-          download
-          class="group glass glass-hover w-full xs:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 border-crystal-purple"
-        >
-          <Icon name="lucide:download" class="w-4 h-4 sm:w-5 sm:h-5" />
-          Download CV
-        </a>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div
-        class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
-        data-animate="fade-in"
-        data-delay="1000"
-      >
-        <Icon name="lucide:chevron-down" class="w-6 h-6 sm:w-8 sm:h-8 text-text-tertiary" />
+          <!-- Glow behind photo -->
+          <div aria-hidden="true" class="absolute -inset-1 rounded-full blur-xl opacity-40 mix-blend-screen pointer-events-none" style="background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.18), transparent 20%), radial-gradient(circle at 70% 70%, rgba(139,92,246,0.12), transparent 30%)"></div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce" data-animate="fade-in" data-delay="1000">
+    <Icon name="lucide:chevron-down" class="w-6 h-6 sm:w-8 sm:h-8 text-text-tertiary"/>
   </div>
 </section>
 
 <script>
-  // Intersection Observer for scroll animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute("data-delay") || "0";
-        setTimeout(() => {
-          entry.target.classList.add("animate-in");
-        }, parseInt(delay));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll("[data-animate]").forEach((el) => {
-    observer.observe(el);
+const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.getAttribute("data-delay") || "0";
+      setTimeout(() => entry.target.classList.add("animate-in"), parseInt(delay));
+      observer.unobserve(entry.target);
+    }
   });
+}, observerOptions);
+document.querySelectorAll("[data-animate]").forEach(el => observer.observe(el));
 </script>
 
 <style>
-  [data-animate] {
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-      opacity 0.8s ease-out,
-      transform 0.8s ease-out;
-  }
+[data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+[data-animate].animate-in { opacity: 1; transform: translateY(0); }
 
-  [data-animate].animate-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* xs breakpoint helper (below sm=640px) */
-  @media (min-width: 480px) {
-    .xs\:flex-row { flex-direction: row; }
-    .xs\:w-auto { width: auto; }
-    .xs\:text-5xl { font-size: 3rem; line-height: 1; }
-  }
+/* xs breakpoint helper (below sm=640px) */
+@media (min-width: 480px) {
+  .xs\:flex-row { flex-direction: row; }
+  .xs\:w-auto { width: auto; }
+  .xs\:text-5xl { font-size: 3rem; line-height: 1; }
+}
 </style>

@@ -1,18 +1,19 @@
 ---
 import { Icon } from "astro-icon/components";
+
 const skillCategories = [
   {
     title: "Frontend Engineering",
     icon: "lucide:palette",
     color: "crystal-blue",
     skills: [
-      { name: "React & Next.js", note: "Component-driven UIs, SSR/SSG, and routing" },
+      { name: "React & Next.js", note: "Component-driven UIs, SSR/SSG and routing" },
       { name: "TypeScript", note: "Static typing to ensure robust and maintainable code" },
       { name: "Tailwind CSS", note: "Utility-first styling for responsive, modern interfaces" },
-      { name: "Astro", note: "Optimized static sites with fast performance" },
+      { name: "Astro", note: "Optimised static sites and performance-first rendering" },
       { name: "HTML5 & Modern CSS", note: "Semantic markup and accessibility (a11y) compliance" },
       { name: "Responsive & Mobile-First", note: "Interfaces that adapt seamlessly across devices" },
-      { name: "Component Architecture", note: "Separation of concerns and reusable UI patterns" }
+      { name: "Component Architecture", note: "Separation of concerns and reusable UI patterns" },
     ],
   },
   {
@@ -20,12 +21,12 @@ const skillCategories = [
     icon: "lucide:server",
     color: "crystal-purple",
     skills: [
-      { name: "Node.js & Express.js", note: "REST APIs, middleware design, and routing" },
-      { name: "RESTful API Design", note: "Clean endpoints and proper HTTP verb usage" },
-      { name: "Authentication & Authorization (JWT)", note: "Secure user sessions and access control" },
+      { name: "Node.js & Express.js", note: "REST APIs, middleware design and routing" },
+      { name: "RESTful API Design", note: "Clear endpoints and correct HTTP verb usage" },
+      { name: "Authentication & Authorization (JWT)", note: "Secure sessions and access control" },
       { name: "Validation & Error Handling", note: "Validated input and centralized error management" },
       { name: "WebSockets", note: "Real-time communication and event-driven features" },
-      { name: "Server-Side Architecture", note: "Layered architecture for maintainability" }
+      { name: "Server-Side Architecture", note: "Layered architecture for maintainability" },
     ],
   },
   {
@@ -33,11 +34,11 @@ const skillCategories = [
     icon: "lucide:database",
     color: "crystal-cyan",
     skills: [
-      { name: "PostgreSQL", note: "Relational modeling and SQL query optimization" },
-      { name: "Drizzle ORM", note: "Typed queries and migrations for data integrity" },
+      { name: "PostgreSQL", note: "Relational modelling and SQL query optimisation" },
+      { name: "Drizzle ORM", note: "Typed queries, migrations and safer database access" },
       { name: "Data Modeling", note: "Designing normalized schemas and relationships" },
-      { name: "Query Optimization", note: "Indexes, joins, and efficient CRUD operations" },
-      { name: "Migrations & Seeds", note: "Database versioning and initial data setup" }
+      { name: "Query Optimisation", note: "Indexes, joins and efficient CRUD operations" },
+      { name: "Migrations & Seeds", note: "Database versioning and reproducible seeds" },
     ],
   },
   {
@@ -45,12 +46,12 @@ const skillCategories = [
     icon: "lucide:settings",
     color: "crystal-violet",
     skills: [
-      { name: "Git & GitHub (Branching)", note: "Clean commits, pull requests, and code reviews" },
-      { name: "Deployment (Vercel / Railway / Cloudflare)", note: "CI/CD pipelines for front-end and back-end" },
+      { name: "Git & GitHub (Branching)", note: "Clean commits, PRs and collaborative code reviews" },
+      { name: "Deployment (Vercel / Railway / Cloudflare)", note: "CI/CD deployments for front-end and back-end" },
       { name: "Environment Config (.env)", note: "Secure management of environment variables" },
-      { name: "Linux Development", note: "Command-line workflow and local debugging" },
-      { name: "Debugging & Tooling", note: "DevTools, Node inspector, and logging best practices" },
-      { name: "Docker", note: "Containerization and reproducible environments" }
+      { name: "Linux Development", note: "Command-line workflows and local debugging" },
+      { name: "Debugging & Tooling", note: "DevTools, Node inspector and structured logging" },
+      { name: "Docker", note: "Containerisation for reproducible environments" },
     ],
   },
   {
@@ -61,7 +62,7 @@ const skillCategories = [
       { name: "Unit Testing (Vitest)", note: "Testing critical logic and functions" },
       { name: "E2E / Integration Testing", note: "Playwright-based end-to-end workflows" },
       { name: "Linters & Formatters", note: "ESLint and Prettier for consistent code style" },
-      { name: "Security Fundamentals", note: "OWASP practices for XSS, CSRF, and injection prevention" }
+      { name: "Security Fundamentals", note: "OWASP practices for XSS, CSRF and injection prevention" },
     ],
   },
 ];
@@ -74,53 +75,64 @@ const stats = [
 ];
 ---
 
-<section id="skills" class="relative py-20 md:py-32">
+<section id="skills" class="relative py-12 md:py-20 lg:py-24">
   <div class="container-custom">
-    <div class="text-center mb-12 md:mb-16" data-animate="fade-in">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+    <div class="text-center mb-8 md:mb-12" data-animate="fade-in">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
         <span class="text-gradient">Skills & Expertise</span>
       </h2>
-      <div class="h-1 w-16 sm:w-20 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-4 sm:mb-6"></div>
+      <div class="h-1 w-14 sm:w-16 mx-auto bg-gradient-to-r from-crystal-cyan to-crystal-purple rounded-full mb-4"></div>
       <p class="text-sm sm:text-base md:text-lg text-text-tertiary max-w-2xl mx-auto px-2">
         Core technologies and engineering practices I apply to design, develop, and deploy modern full-stack web applications.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
-      {skillCategories.map((category, index) => (
-        <div
-          key={category.title}
-          class="group glass rounded-2xl p-5 md:p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow"
-          data-animate="slide-up"
-          data-delay={index * 100}
-        >
-          <div class="flex items-center gap-3 mb-5 md:mb-6">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110 shrink-0">
-              <Icon name={category.icon} class={`w-5 h-5 sm:w-6 sm:h-6 text-${category.color}`} />
+    <!-- Bento Grid: 1 col mobile, 2 cols tablet, 3 cols desktop.
+         First card spans 2 columns on lg to create the bento effect. -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skillCategories.map((category, index) => {
+        // Make the first card larger on large screens to create the "bento" feel
+        const spanClass = index === 0 ? "lg:col-span-2 lg:min-h-[260px]" : "lg:col-span-1";
+        return (
+          <div
+            key={category.title}
+            class={`group glass rounded-2xl p-5 md:p-6 transition-all duration-500 hover:scale-[1.02] hover:crystal-glow ${spanClass}`}
+            data-animate="slide-up"
+            data-delay={index * 100}
+            role="region"
+            aria-labelledby={`skills-${index}-title`}
+          >
+            <div class="flex items-start gap-3 mb-4 md:mb-5">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl glass flex items-center justify-center transition-all duration-300 group-hover:scale-110 shrink-0">
+                <Icon name={category.icon} class={`w-5 h-5 sm:w-6 sm:h-6 text-${category.color}`} />
+              </div>
+              <h3 id={`skills-${index}-title`} class="text-base sm:text-lg md:text-xl font-bold text-text-primary leading-tight">
+                {category.title}
+              </h3>
             </div>
-            <h3 class="text-base sm:text-lg md:text-xl font-bold text-text-primary leading-tight">{category.title}</h3>
-          </div>
 
-          <ul class="space-y-2 sm:space-y-3">
-            {category.skills.map((skill) => (
-              <li key={skill.name} class="flex flex-col gap-1 text-text-secondary transition-all duration-300 hover:text-text-primary">
-                <div class="flex items-baseline gap-3">
-                  <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan shrink-0" />
-                  <span class="text-sm sm:text-base font-semibold">{skill.name}</span>
-                </div>
-                <div class="pl-6 text-xs sm:text-sm text-text-tertiary leading-tight">{skill.note}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+            <ul class="space-y-3">
+              {category.skills.map((skill) => (
+                <li key={skill.name} class="flex flex-col gap-1 text-text-secondary transition-all duration-300">
+                  <div class="flex items-baseline gap-3">
+                    <div class="w-1.5 h-1.5 rounded-full bg-crystal-cyan shrink-0" />
+                    <span class="text-sm sm:text-base font-semibold">{skill.name}</span>
+                  </div>
+                  <div class="pl-6 text-xs sm:text-sm text-text-tertiary leading-tight">{skill.note}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16" data-animate="fade-in" data-delay="800">
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 md:mt-12" data-animate="fade-in" data-delay="600">
       {stats.map((stat) => (
-        <div key={stat.label} class="glass rounded-xl p-4 sm:p-6 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
-          <Icon name={stat.icon} class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-crystal-cyan" />
-          <div class="text-2xl sm:text-3xl font-bold text-gradient mb-1 sm:mb-2">{stat.value}</div>
+        <div key={stat.label} class="glass rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:crystal-glow hover:scale-105">
+          <Icon name={stat.icon} class="w-5 h-5 sm:w-7 sm:h-7 mx-auto mb-2 text-crystal-cyan" />
+          <div class="text-xl sm:text-2xl font-bold text-gradient mb-1">{stat.value}</div>
           <div class="text-xs sm:text-sm text-text-tertiary leading-tight">{stat.label}</div>
         </div>
       ))}
@@ -129,6 +141,7 @@ const stats = [
 </section>
 
 <script>
+  // Intersection Observer for animations (keeps existing behavior)
   const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -144,6 +157,7 @@ const stats = [
 </script>
 
 <style>
+  /* animation helpers (kept from original) */
   #skills [data-animate] {
     opacity: 0;
     transform: translateY(30px);
@@ -152,5 +166,13 @@ const stats = [
   #skills [data-animate].animate-in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* small polish so cards don't collapse vertically on small screens */
+  @media (min-width: 1024px) {
+    /* ensure consistent card heights on large screens (helps visual balance) */
+    #skills .lg\\:min-h-\\[260px\\] {
+      min-height: 260px;
+    }
   }
 </style>
