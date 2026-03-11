@@ -62,7 +62,6 @@ const projects: Project[] = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
       {projects.map((project, index) => (
         <article
-          key={project.title}
           class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02]"
           data-animate="slide-up"
           data-delay={index * 120}
@@ -76,7 +75,6 @@ const projects: Project[] = [
             >
               {project.screenshots.map((img, i) => (
                 <a
-                  key={`${project.title}-img-${i}`}
                   href={img.src}
                   data-pswp-width={img.width || 1200}
                   data-pswp-height={img.height || 800}
@@ -138,7 +136,7 @@ const projects: Project[] = [
 
             <div class="flex flex-wrap gap-2" aria-hidden="false">
               {project.stack.map((tech) => (
-                <span key={`${project.title}-tag-${tech}`} class="glass px-3 py-1 rounded-full text-sm text-text-tertiary">
+                <span class="glass px-3 py-1 rounded-full text-sm text-text-tertiary">
                   {tech}
                 </span>
               ))}
